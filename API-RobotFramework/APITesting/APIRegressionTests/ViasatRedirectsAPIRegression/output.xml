@@ -1,0 +1,3011 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.9.13 on darwin)" generated="20231219 16:00:55.397" rpa="false" schemaversion="4">
+<suite id="s1" name="ViasatRedirectsAPIRegression" source="/Users/aveeravalli/PycharmProjects/viasat_com-qa_new1/API-RobotFramework/APITesting/APIRegressionTests/ViasatRedirectsAPIRegression">
+<suite id="s1-s1" name="RedirectURLAPI" source="/Users/aveeravalli/PycharmProjects/viasat_com-qa_new1/API-RobotFramework/APITesting/APIRegressionTests/ViasatRedirectsAPIRegression/RedirectURLAPI.robot">
+<test id="s1-s1-t1" name="Short Domain and No Path" line="39">
+<kw name="Get_Request_Redirect">
+<arg>short_nopath</arg>
+<arg>${SHORT_DOMAIN}</arg>
+<arg>${null}</arg>
+<arg>https://www.viasat.com/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:55.857" level="INFO">Creating Session using : alias=short_nopath, url=https://viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:55.856" endtime="20231219 16:00:55.857"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:56.101" level="INFO">GET Request : url=https://viasat.com/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.102" level="INFO">GET Response : url=https://viasat.com/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:56 GMT', 'X-Viasat-FWD': 'redirect-primary', 'Location': 'https://www.viasat.com/', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 fc9b6e8f934a073c1a1983c7599b93ba.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'OPEukOPxAXH7-4ZLBmt-LZkwRSegjWKlhWnmAAWdiER3tvZOx9YX9g=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.102" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:55.857" endtime="20231219 16:00:56.102"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:56.103" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.102" endtime="20231219 16:00:56.103"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:56.104" level="INFO">${location_header} = https://www.viasat.com/</msg>
+<status status="PASS" starttime="20231219 16:00:56.103" endtime="20231219 16:00:56.104"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:56.104" endtime="20231219 16:00:56.104"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:55.855" endtime="20231219 16:00:56.104"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:55.854" endtime="20231219 16:00:56.104"/>
+</test>
+<test id="s1-s1-t2" name="Short Domain and Root Path" line="41">
+<kw name="Get_Request_Redirect">
+<arg>short_rootpath</arg>
+<arg>${SHORT_DOMAIN}</arg>
+<arg>/</arg>
+<arg>https://www.viasat.com/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:56.106" level="INFO">Creating Session using : alias=short_rootpath, url=https://viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:56.106" endtime="20231219 16:00:56.106"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:56.279" level="INFO">GET Request : url=https://viasat.com/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.280" level="INFO">GET Response : url=https://viasat.com/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:56 GMT', 'X-Viasat-FWD': 'redirect-primary', 'Location': 'https://www.viasat.com/', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 3dde68f1f52282c9e1ee336d97233b0a.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': '7fLnP2sYk-i5byGPvwAxWgUlX5BZ2ghyOEQ3NwpJ2GP-Cr3DqARHRA=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.280" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.106" endtime="20231219 16:00:56.280"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:56.281" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.280" endtime="20231219 16:00:56.281"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:56.282" level="INFO">${location_header} = https://www.viasat.com/</msg>
+<status status="PASS" starttime="20231219 16:00:56.281" endtime="20231219 16:00:56.282"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:56.282" endtime="20231219 16:00:56.283"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.105" endtime="20231219 16:00:56.283"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.105" endtime="20231219 16:00:56.283"/>
+</test>
+<test id="s1-s1-t3" name="Short Domain and Path" line="43">
+<kw name="Get_Request_Redirect">
+<arg>short_path</arg>
+<arg>${SHORT_DOMAIN}</arg>
+<arg>/savenow</arg>
+<arg>https://www.viasat.com/satellite-internet/best-offer/?cid=TVN_US_2022_HURAFAPS49</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:56.285" level="INFO">Creating Session using : alias=short_path, url=https://viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:56.284" endtime="20231219 16:00:56.285"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:56.451" level="INFO">GET Request : url=https://viasat.com/savenow 
+ path_url=/savenow 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.452" level="INFO">GET Response : url=https://viasat.com/savenow 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:56 GMT', 'X-Viasat-FWD': 'redirect-lookup', 'Location': 'https://www.viasat.com/satellite-internet/best-offer/?cid=TVN_US_2022_HURAFAPS49', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 58f9a50682bb94842197f3e957919c60.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': '10ZFIpMwnW6lnyr0omkGUo_QNdXLeH8y5ADlBA7uAsrUZvd6r6tJ1w=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.452" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.285" endtime="20231219 16:00:56.452"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:56.453" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.452" endtime="20231219 16:00:56.453"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:56.454" level="INFO">${location_header} = https://www.viasat.com/satellite-internet/best-offer/?cid=TVN_US_2022_HURAFAPS49</msg>
+<status status="PASS" starttime="20231219 16:00:56.453" endtime="20231219 16:00:56.454"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:56.454" endtime="20231219 16:00:56.455"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.284" endtime="20231219 16:00:56.455"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.283" endtime="20231219 16:00:56.455"/>
+</test>
+<test id="s1-s1-t4" name="Short Domain and Friendly" line="45">
+<kw name="Get_Request_Redirect">
+<arg>short_friendly</arg>
+<arg>${SHORT_DOMAIN}</arg>
+<arg>/savenow/</arg>
+<arg>https://www.viasat.com/savenow/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:56.457" level="INFO">Creating Session using : alias=short_friendly, url=https://viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:56.456" endtime="20231219 16:00:56.457"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:56.644" level="INFO">GET Request : url=https://viasat.com/savenow/ 
+ path_url=/savenow/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.644" level="INFO">GET Response : url=https://viasat.com/savenow/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:56 GMT', 'X-Viasat-FWD': 'redirect-primary', 'Location': 'https://www.viasat.com/savenow/', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 04e6cfc6f03b8f5e6f5459aacc86b372.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'IhYrOVsmQPgiTfFVEo9wH5JnNp6AoTy88M-jpywuXABhUbv-ZL7Z7A=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.645" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.457" endtime="20231219 16:00:56.645"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:56.646" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.645" endtime="20231219 16:00:56.646"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:56.647" level="INFO">${location_header} = https://www.viasat.com/savenow/</msg>
+<status status="PASS" starttime="20231219 16:00:56.646" endtime="20231219 16:00:56.647"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:56.647" endtime="20231219 16:00:56.647"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.456" endtime="20231219 16:00:56.648"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.455" endtime="20231219 16:00:56.648"/>
+</test>
+<test id="s1-s1-t5" name="Short Domain and AEM" line="47">
+<kw name="Get_Request_Redirect">
+<arg>short_aem</arg>
+<arg>${SHORT_DOMAIN}</arg>
+<arg>/about/</arg>
+<arg>https://www.viasat.com/about/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:56.649" level="INFO">Creating Session using : alias=short_aem, url=https://viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:56.649" endtime="20231219 16:00:56.650"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:56.837" level="INFO">GET Request : url=https://viasat.com/about/ 
+ path_url=/about/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.838" level="INFO">GET Response : url=https://viasat.com/about/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:56 GMT', 'X-Viasat-FWD': 'redirect-primary', 'Location': 'https://www.viasat.com/about/', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 b637bd7696854d7acbf96132dcf53200.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'A6ypBCB3LGqxOL8kzW4SD6eFe-4ZVqNnMx-grT6A0JIsck6nh8OU2A=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:56.838" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.650" endtime="20231219 16:00:56.838"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:56.839" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.838" endtime="20231219 16:00:56.839"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:56.840" level="INFO">${location_header} = https://www.viasat.com/about/</msg>
+<status status="PASS" starttime="20231219 16:00:56.839" endtime="20231219 16:00:56.840"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:56.841" endtime="20231219 16:00:56.841"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.649" endtime="20231219 16:00:56.841"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.648" endtime="20231219 16:00:56.841"/>
+</test>
+<test id="s1-s1-t6" name="Short Domain and PDF" line="49">
+<kw name="Get_Request_Redirect">
+<arg>short_pdf</arg>
+<arg>${SHORT_DOMAIN}</arg>
+<arg>/files/assets/web/datasheets/FEC_IPCores_111.pdf</arg>
+<arg>https://www.viasat.com/space-innovation/space-and-networking-technology/asics-and-ip-cores/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:56.843" level="INFO">Creating Session using : alias=short_pdf, url=https://viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:56.843" endtime="20231219 16:00:56.844"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:57.029" level="INFO">GET Request : url=https://viasat.com/files/assets/web/datasheets/FEC_IPCores_111.pdf 
+ path_url=/files/assets/web/datasheets/FEC_IPCores_111.pdf 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:57.029" level="INFO">GET Response : url=https://viasat.com/files/assets/web/datasheets/FEC_IPCores_111.pdf 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:57 GMT', 'X-Viasat-FWD': 'redirect-pdf-lookup', 'Location': 'https://www.viasat.com/space-innovation/space-and-networking-technology/asics-and-ip-cores/', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 ce74b5c96395745bcb8206d6c9ee0962.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'idHjFFmM9Zd_FPfaNxZVi64DWMZg5YnX8sqx5DbSxm-71o9X-iZfXg=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:57.030" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:56.844" endtime="20231219 16:00:57.030"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:57.031" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:57.030" endtime="20231219 16:00:57.031"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:57.032" level="INFO">${location_header} = https://www.viasat.com/space-innovation/space-and-networking-technology/asics-and-ip-cores/</msg>
+<status status="PASS" starttime="20231219 16:00:57.031" endtime="20231219 16:00:57.032"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:57.032" endtime="20231219 16:00:57.032"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.842" endtime="20231219 16:00:57.032"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:56.842" endtime="20231219 16:00:57.033"/>
+</test>
+<test id="s1-s1-t7" name="Full Domain and No Path" line="54">
+<kw name="Get_Request_Success">
+<arg>full_nopath</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>${null}</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:57.035" level="INFO">Creating Session using : alias=full_nopath, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:57.034" endtime="20231219 16:00:57.035"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:57.359" level="INFO">GET Request : url=https://www.viasat.com/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:57.361" level="INFO">GET Response : url=https://www.viasat.com/ 
+ status=200, reason=OK 
+ headers={'Content-Type': 'text/html;charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Date': 'Tue, 19 Dec 2023 23:30:03 GMT', 'Set-Cookie': 'AWSALB=GqhTTUL/6+zmIPfa4TWTvRq5xl5kWTT0KaTm27F6hAvsFOiGdsg5zoQOqDXPhHeVLqLJIrmX5gYdFM1p5wXDt+lsYMysXAKVutNQY6qaV2ElC5VV2GRIygpeBRlI; Expires=Tue, 26 Dec 2023 23:30:03 GMT; Path=/, AWSALBCORS=GqhTTUL/6+zmIPfa4TWTvRq5xl5kWTT0KaTm27F6hAvsFOiGdsg5zoQOqDXPhHeVLqLJIrmX5gYdFM1p5wXDt+lsYMysXAKVutNQY6qaV2ElC5VV2GRIygpeBRlI; Expires=Tue, 26 Dec 2023 23:30:03 GMT; Path=/; SameSite=None; Secure', 'Server': 'Apache', 'X-Dispatcher': 'dispatcher2useast1', 'X-Vhost': 'publish', 'Strict-Transport-Security': 'max-age=63072000', 'X-XSS-Protection': '1; mode=block', 'referrer-policy': 'strict-origin-when-cross-origin', 'Cache-Control': 'public, max-age=43200', 'X-Content-Type-Options': 'nosniff', 'Accept-Ranges': 'bytes', 'Content-Encoding': 'gzip', 'X-Frame-Options': 'SAMEORIGIN', 'Vary': 'Accept-Encoding, Origin', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Content-Security-Policy': "default-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com ; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.infinity-tracking.com *.adsrvr.org *.demandbase.com *.bing.com *.google.com *.cookielaw.org *.doubleclick.net *.adobedtm.com *.everestjs.net *.clarity.ms *.marketo.com *.scene7.com *.qualtrics.com *.conductor.com *.viasat.com *.amazonaws.com qvdt3feo.com *.googleadservices.com *.google-analytics.com *.googletagmanager.com *.googleapis.com *.adobedtm.com *.sftoaa.com *.everestjs.net *.invocacdn.com *.invoca.net *.marketo.net *.crazyegg.com *.licdn.com *.facebook.net viasatinc.data.adobedc.net *.raygun.io *.bizible.com siteintercept.qualtrics.com *.icat.viasat.io tags.srv.stackadapt.com  ; frame-src 'self' *.youtube.com *.marketo.com *.adsrvr.org *.facebook.com *.company-target.com *.az1.qualtrics.com *.opendns.com *.adsrvr.cn *.doubleclick.net *.everesttech.net *.demdex.net *.everestjs.net *.force.com *.crazyegg.com ca-viasat-status.s3.amazonaws.com  ; img-src 'self' https: data:  ; media-src 'self' *.scene7.com  ; script-src-elem 'self' https: 'unsafe-inline'  ; connect-src 'self' 'unsafe-inline' *.demandbase.com *.infinity-tracking.net *.infinity-tracking.com *.onetrust.com *.company-target.com *.oribi.io *.clarity.ms *.scene7.com *.qualtrics.com *.facebook.com *.cookielaw.org *.everesttech.net google.com *.google.com *.google-analytics.com *.viasat.com *.doubleclick.net *.googleapis.com *.demdex.net *.omtrdc.net *.mktoresp.com *.crazyegg.com *.ads.linkedin.com cognito-identity.us-east-1.amazonaws.com sts.us-east-1.amazonaws.com dataplane.rum.us-east-1.amazonaws.com *.icat.viasat.io *.raygun.io *.bing.com *.invoca.net *.mktoutil.com tags.srv.stackadapt.com *.phonetrack.com * *.sftoaa.com  ; font-src 'self' fonts.gstatic.com *.googleapis.com *.icat.viasat.io *.typekit.net  ; style-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com *.googleapis.com *.amazonaws.com *.scene7.com *.gstatic.com *.miaprova.com tags.srv.stackadapt.com  ; report-uri https://report-to-api.raygun.com/reports-csp?apikey=4uWKnPZoEmyV7vSRKJeHw report-to csp-endpoint", 'Report-To': '{"group": "csp-endpoint", "max-age": 10886400, "endpoints": [ { "url": "https://report-to-api.raygun.com/reports?apikey=4uWKnPZoEmyV7vSRKJeHw" } ] }', 'X-Cache': 'Hit from cloudfront', 'Via': '1.1 c07670802688417c8b871124c547eb0a.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'R15MzH4YPyIMTVUD8Qxt8xEAZtuNn21Vn1pnHDo4rLpUeTuS910eFQ==', 'Age': '1854'} 
+ body=&lt;!DOCTYPE HTML&gt;
+&lt;html lang="en"&gt;
+
+
+
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"/&gt;
+
+    &lt;title&gt;Global Communications | Services, Solutions &amp;amp; Satellite Internet | Viasat&lt;/title&gt;
+
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"/&gt;
+    
+    &lt;meta name="format-detection" content="telephone=no"/&gt;
+
+    &lt;link rel="canonical" href="https://www.viasat.com/"/&gt;
+
+    
+
+&lt;meta name="description" content="Viasat is a global communications company connecting homes, businesses, governments &amp;amp; militaries with satellite internet, connectivity solutions, &amp;amp; additional services."/&gt;
+
+
+   
+   
+   
+
+   &lt;!-- Facebook data --&gt;
+   &lt;meta property="og:site_name" content="Viasat.com"/&gt;
+   &lt;meta property="og:url" content="https://www.viasat.com/"/&gt;
+   &lt;meta property="og:type" content="website"/&gt;
+   &lt;meta property="og:title" content="Global Communications | Services, Solutions &amp;amp; Satellite Internet"/&gt;
+   &lt;meta property="og:description" content="Viasat is a global communications company connecting homes, businesses, governments &amp;amp; militaries with satellite internet, connectivity solutions, &amp;amp; additional services."/&gt;
+   &lt;meta property="fb:app_id" content="440092857430654"/&gt;
+   &lt;meta property="og:image" content="https://www.viasat.com/etc.clientlibs/viasat-base/clientlibs/clientlib-resources/resources/social/ogImage.jpg"/&gt;
+   &lt;!-- End Facebook data --&gt;
+
+   &lt;!--  Twitter card data--&gt;
+   &lt;meta name="twitter:card" content="summary_large_image"/&gt;
+   &lt;meta name="twitter:site" content="@ViasatInc"/&gt;
+   &lt;meta name="twitter:title" content="Global Communications | Services, Solutions &amp;amp; Satellite Internet"/&gt;
+   &lt;meta name="twitter:description" content="Viasat is a global communications company connecting homes, businesses, governments &amp;amp; militaries with satellite internet, connectivity solutions, &amp;amp; additional services."/&gt;
+   &lt;meta name="twitter:image" content="https://www.viasat.com/etc.clientlibs/viasat-base/clientlibs/clientlib-resources/resources/social/ogImage.jpg"/&gt;
+   &lt;!--  Twitter card data End--&gt;
+
+   
+      &lt;link rel="alternate" href="https://www.viasat.com/" hreflang="en-us"/&gt;
+   
+      &lt;link rel="alternate" href="https://viasatinternet.pl" hreflang="pl-pl"/&gt;
+   
+      &lt;link rel="alternate" href="https://viabredband.no" hreflang="no-no"/&gt;
+   
+      &lt;link rel="alternate" href="https://vialaajakaista.fi" hreflang="fi-fi"/&gt;
+   
+      &lt;link rel="alternate" href="https://viabredband.se" hreflang="sv-se"/&gt;
+   
+      &lt;link rel="alternate" href="https://www.viasat.com/pt-br/" hreflang="pt-br"/&gt;
+   
+      &lt;link rel="alternate" href="https://www.viasat.com/es-mx/" hreflang="es-mx"/&gt;
+   
+      &lt;link rel="alternate" href="https://www.viasat.com/es-es/" hreflang="es-es"/&gt;
+   
+
+   &lt;script type="application/ld+json"&gt;{
+      "@context": "http://schema.org",
+      "@type": ["Organization", "WebSite"],
+      "name": "Viasat, Inc.",
+      "alternateName": ["Viasat"],
+      "url": "https://www.viasat.com/",
+      "logo": "https://www.viasat.com/etc.clientlibs/viasat-base/clientlibs/clientlib-resources/resources/logos/ViasatLogoDefault.svg"
+      }
+   &lt;/script&gt;
+
+
+
+
+    
+&lt;!-- Preconnect/DNS prefetch to required third party code --&gt;
+&lt;link rel="preconnect" href="https://assets.adobedtm.com"/&gt;
+&lt;link rel="preconnect" href="https://s7d1.scene7.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://app-ab24.marketo.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://bat.bing.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://beacon.sftoaa.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn.bizible.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn.cookielaw.org"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn-cs.conductor.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn.raygun.io"/&gt;
+&lt;link rel="dns-prefetch" href="https://connect.facebook.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://www.clarity.ms"/&gt;
+&lt;link rel="dns-prefetch" href="https://cm.everesttech.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://cm.g.doubleclick.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://dpm.demdex.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://munchkin.marketo.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://pixel.everesttech.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://pnapi.invoca.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://px.ads.linkedin.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://script.crazyegg.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://siteintercept.qualtrics.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://snap.licdn.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://solutions.invocacdn.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://sync.tm.everesttech.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://www.everestjs.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://x.clarity.ms"/&gt;
+
+    
+
+
+&lt;script type="text/javascript"&gt;
+    !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+        (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+        f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+        h&amp;&amp;h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+            e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+        rg4js('apiKey', '');
+        rg4js('enableCrashReporting', '');
+        rg4js('enablePulse', '');
+&lt;/script&gt;
+
+    &lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/sourcesanspro-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/sourcesanspro-semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/sourcesanspro-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/unineue-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/unineue-heavy.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/unineue-book.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-icons/resources/beam/fonts/beam-icons.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+
+
+    
+
+    &lt;!-- prehiding for target - start --&gt;
+&lt;!--&lt;sly data-sly-include="prehiding.html"/&gt;--&gt;
+&lt;!-- prehiding for target - end --&gt;
+
+&lt;!-- customheaderlibs - start --&gt;
+
+&lt;!-- customheaderlibs - end --&gt;
+
+    
+
+&lt;!-- headlibs.html - start --&gt;
+
+    
+
+    
+
+    
+
+    
+        &lt;script type="text/javascript" src="//assets.adobedtm.com/138ddf5a8359/0880e83f9587/launch-ba9586140784.min.js" defer="defer"&gt;&lt;/script&gt;
+
+
+
+    
+    
+
+
+
+    
+    
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam.min.7fabe1fd36f73e7aa41526aed1c423c5.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-structure.min.2c3aba6e59d86bfbaf1658a6138f7065.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-form.min.d41d8cd98f00b204e9800998ecf8427e.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-icons.min.9158497ba37e621d5b29b056c48556b3.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts.min.26f6a9b54ec13903216b6244f47e10d5.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-components.min.d2bec7b20a701d3dbd8d4f415619901e.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-site.min.e79bcf79c70b2d95eae20965988bd3b6.css" type="text/css"&gt;
+
+
+
+    
+
+&lt;!-- headlibs.html - end --&gt;
+
+
+
+    
+    &lt;link rel="icon" sizes="192x192" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-resources/resources/icons/favicon.png"/&gt;
+
+&lt;/head&gt;
+
+
+&lt;body data-component-js="PageHelpers"&gt;
+     &lt;header&gt;
+
+    
+
+    &lt;div class="cmp-experiencefragment cmp-experiencefragment--" data-xf-path="/content/experience-fragments/viasat/us/en/structure/header/master"&gt;
+        &lt;div class="xfpage page basicpage"&gt;&lt;div class="xf-web-container" data-xf-path="/content/experience-fragments/viasat/us/en/structure/header/master"&gt;
+    
+
+    
+
+    &lt;div class="root-container bridge2basepage"&gt;
+    
+    
+    
+    &lt;div class="cmp-container"&gt;
+        
+        &lt;div class="header-block expand-collapse-component header-block--with-utility-bar"&gt;
+    
+    
+    
+    &lt;div class="cmp-container"&gt;
+        
+        &lt;div class="row-container header-block__utility-bar row-container--full-width row-container--child-auto-size color row-container--surface-teal-700"&gt;
+  &lt;div class="cmp-row-container
+      
+      " data-component-js="HeaderUtilityBar"&gt;
+      
+  &lt;div class="cmp-row-container--content container"&gt;
+    
+
+&lt;div class="aem-Grid row "&gt;
+
+    
+
+    &lt;div class="base-container header-block__utility-bar-left col-sm-auto col-auto col-md-auto offset-xs-0 col-sm-none col-xs-none col-lg-none offset-lg-0 aem-GridColumn col-md-none offset-sm-0 offset-md-0 col-xs-auto col-lg-auto"&gt;
+    
+    &lt;div class="cmp-container"&gt;
+        &lt;div class="cmp-container--content"&gt;
+          
+
+&lt;div class="aem-Grid row "&gt;
+
+    
+
+    &lt;nav class="nav-menu utility-bar__main-menu col-lg-12 offset-xs-0 col-sm-none col-sm-12 col-xs-none col-xs-12 col-12 col-lg-none offset-lg-0 aem-GridColumn col-md-none offset-sm-0 col-md-12 offset-md-0"&gt;
+    
+
+    
+    
+    
+
+    &lt;!-- NavMenu Component - Start --&gt;
+    &lt;ul role="menubar" aria-label="top-menu" data-debug-nav-list="/content/dam/viasat/navigation/content/viasat/us/en/main-menu" data-debug-nav-list-count="5"&gt;
+
+   ... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20231219 16:00:57.361" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:57.035" endtime="20231219 16:00:57.361"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:57.362" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:57.362" endtime="20231219 16:00:57.362"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:57.034" endtime="20231219 16:00:57.363"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:57.033" endtime="20231219 16:00:57.363"/>
+</test>
+<test id="s1-s1-t8" name="Full Domain and Root Path" line="56">
+<kw name="Get_Request_Success">
+<arg>full_rootpath</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:57.364" level="INFO">Creating Session using : alias=full_rootpath, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:57.364" endtime="20231219 16:00:57.364"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:57.666" level="INFO">GET Request : url=https://www.viasat.com/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:57.668" level="INFO">GET Response : url=https://www.viasat.com/ 
+ status=200, reason=OK 
+ headers={'Content-Type': 'text/html;charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Date': 'Tue, 19 Dec 2023 23:30:03 GMT', 'Set-Cookie': 'AWSALB=GqhTTUL/6+zmIPfa4TWTvRq5xl5kWTT0KaTm27F6hAvsFOiGdsg5zoQOqDXPhHeVLqLJIrmX5gYdFM1p5wXDt+lsYMysXAKVutNQY6qaV2ElC5VV2GRIygpeBRlI; Expires=Tue, 26 Dec 2023 23:30:03 GMT; Path=/, AWSALBCORS=GqhTTUL/6+zmIPfa4TWTvRq5xl5kWTT0KaTm27F6hAvsFOiGdsg5zoQOqDXPhHeVLqLJIrmX5gYdFM1p5wXDt+lsYMysXAKVutNQY6qaV2ElC5VV2GRIygpeBRlI; Expires=Tue, 26 Dec 2023 23:30:03 GMT; Path=/; SameSite=None; Secure', 'Server': 'Apache', 'X-Dispatcher': 'dispatcher2useast1', 'X-Vhost': 'publish', 'Strict-Transport-Security': 'max-age=63072000', 'X-XSS-Protection': '1; mode=block', 'referrer-policy': 'strict-origin-when-cross-origin', 'Cache-Control': 'public, max-age=43200', 'X-Content-Type-Options': 'nosniff', 'Accept-Ranges': 'bytes', 'Content-Encoding': 'gzip', 'X-Frame-Options': 'SAMEORIGIN', 'Vary': 'Accept-Encoding, Origin', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Content-Security-Policy': "default-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com ; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.infinity-tracking.com *.adsrvr.org *.demandbase.com *.bing.com *.google.com *.cookielaw.org *.doubleclick.net *.adobedtm.com *.everestjs.net *.clarity.ms *.marketo.com *.scene7.com *.qualtrics.com *.conductor.com *.viasat.com *.amazonaws.com qvdt3feo.com *.googleadservices.com *.google-analytics.com *.googletagmanager.com *.googleapis.com *.adobedtm.com *.sftoaa.com *.everestjs.net *.invocacdn.com *.invoca.net *.marketo.net *.crazyegg.com *.licdn.com *.facebook.net viasatinc.data.adobedc.net *.raygun.io *.bizible.com siteintercept.qualtrics.com *.icat.viasat.io tags.srv.stackadapt.com  ; frame-src 'self' *.youtube.com *.marketo.com *.adsrvr.org *.facebook.com *.company-target.com *.az1.qualtrics.com *.opendns.com *.adsrvr.cn *.doubleclick.net *.everesttech.net *.demdex.net *.everestjs.net *.force.com *.crazyegg.com ca-viasat-status.s3.amazonaws.com  ; img-src 'self' https: data:  ; media-src 'self' *.scene7.com  ; script-src-elem 'self' https: 'unsafe-inline'  ; connect-src 'self' 'unsafe-inline' *.demandbase.com *.infinity-tracking.net *.infinity-tracking.com *.onetrust.com *.company-target.com *.oribi.io *.clarity.ms *.scene7.com *.qualtrics.com *.facebook.com *.cookielaw.org *.everesttech.net google.com *.google.com *.google-analytics.com *.viasat.com *.doubleclick.net *.googleapis.com *.demdex.net *.omtrdc.net *.mktoresp.com *.crazyegg.com *.ads.linkedin.com cognito-identity.us-east-1.amazonaws.com sts.us-east-1.amazonaws.com dataplane.rum.us-east-1.amazonaws.com *.icat.viasat.io *.raygun.io *.bing.com *.invoca.net *.mktoutil.com tags.srv.stackadapt.com *.phonetrack.com * *.sftoaa.com  ; font-src 'self' fonts.gstatic.com *.googleapis.com *.icat.viasat.io *.typekit.net  ; style-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com *.googleapis.com *.amazonaws.com *.scene7.com *.gstatic.com *.miaprova.com tags.srv.stackadapt.com  ; report-uri https://report-to-api.raygun.com/reports-csp?apikey=4uWKnPZoEmyV7vSRKJeHw report-to csp-endpoint", 'Report-To': '{"group": "csp-endpoint", "max-age": 10886400, "endpoints": [ { "url": "https://report-to-api.raygun.com/reports?apikey=4uWKnPZoEmyV7vSRKJeHw" } ] }', 'X-Cache': 'Hit from cloudfront', 'Via': '1.1 38eecd3ca21bf068d69a2f9cfe668d14.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'H0XeUS7mnBokyFahpfA4_iaKxAHJj3G_N-ohyzxAuCqR8dXnFZE5Ug==', 'Age': '1854'} 
+ body=&lt;!DOCTYPE HTML&gt;
+&lt;html lang="en"&gt;
+
+
+
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"/&gt;
+
+    &lt;title&gt;Global Communications | Services, Solutions &amp;amp; Satellite Internet | Viasat&lt;/title&gt;
+
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"/&gt;
+    
+    &lt;meta name="format-detection" content="telephone=no"/&gt;
+
+    &lt;link rel="canonical" href="https://www.viasat.com/"/&gt;
+
+    
+
+&lt;meta name="description" content="Viasat is a global communications company connecting homes, businesses, governments &amp;amp; militaries with satellite internet, connectivity solutions, &amp;amp; additional services."/&gt;
+
+
+   
+   
+   
+
+   &lt;!-- Facebook data --&gt;
+   &lt;meta property="og:site_name" content="Viasat.com"/&gt;
+   &lt;meta property="og:url" content="https://www.viasat.com/"/&gt;
+   &lt;meta property="og:type" content="website"/&gt;
+   &lt;meta property="og:title" content="Global Communications | Services, Solutions &amp;amp; Satellite Internet"/&gt;
+   &lt;meta property="og:description" content="Viasat is a global communications company connecting homes, businesses, governments &amp;amp; militaries with satellite internet, connectivity solutions, &amp;amp; additional services."/&gt;
+   &lt;meta property="fb:app_id" content="440092857430654"/&gt;
+   &lt;meta property="og:image" content="https://www.viasat.com/etc.clientlibs/viasat-base/clientlibs/clientlib-resources/resources/social/ogImage.jpg"/&gt;
+   &lt;!-- End Facebook data --&gt;
+
+   &lt;!--  Twitter card data--&gt;
+   &lt;meta name="twitter:card" content="summary_large_image"/&gt;
+   &lt;meta name="twitter:site" content="@ViasatInc"/&gt;
+   &lt;meta name="twitter:title" content="Global Communications | Services, Solutions &amp;amp; Satellite Internet"/&gt;
+   &lt;meta name="twitter:description" content="Viasat is a global communications company connecting homes, businesses, governments &amp;amp; militaries with satellite internet, connectivity solutions, &amp;amp; additional services."/&gt;
+   &lt;meta name="twitter:image" content="https://www.viasat.com/etc.clientlibs/viasat-base/clientlibs/clientlib-resources/resources/social/ogImage.jpg"/&gt;
+   &lt;!--  Twitter card data End--&gt;
+
+   
+      &lt;link rel="alternate" href="https://www.viasat.com/" hreflang="en-us"/&gt;
+   
+      &lt;link rel="alternate" href="https://viasatinternet.pl" hreflang="pl-pl"/&gt;
+   
+      &lt;link rel="alternate" href="https://viabredband.no" hreflang="no-no"/&gt;
+   
+      &lt;link rel="alternate" href="https://vialaajakaista.fi" hreflang="fi-fi"/&gt;
+   
+      &lt;link rel="alternate" href="https://viabredband.se" hreflang="sv-se"/&gt;
+   
+      &lt;link rel="alternate" href="https://www.viasat.com/pt-br/" hreflang="pt-br"/&gt;
+   
+      &lt;link rel="alternate" href="https://www.viasat.com/es-mx/" hreflang="es-mx"/&gt;
+   
+      &lt;link rel="alternate" href="https://www.viasat.com/es-es/" hreflang="es-es"/&gt;
+   
+
+   &lt;script type="application/ld+json"&gt;{
+      "@context": "http://schema.org",
+      "@type": ["Organization", "WebSite"],
+      "name": "Viasat, Inc.",
+      "alternateName": ["Viasat"],
+      "url": "https://www.viasat.com/",
+      "logo": "https://www.viasat.com/etc.clientlibs/viasat-base/clientlibs/clientlib-resources/resources/logos/ViasatLogoDefault.svg"
+      }
+   &lt;/script&gt;
+
+
+
+
+    
+&lt;!-- Preconnect/DNS prefetch to required third party code --&gt;
+&lt;link rel="preconnect" href="https://assets.adobedtm.com"/&gt;
+&lt;link rel="preconnect" href="https://s7d1.scene7.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://app-ab24.marketo.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://bat.bing.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://beacon.sftoaa.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn.bizible.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn.cookielaw.org"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn-cs.conductor.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn.raygun.io"/&gt;
+&lt;link rel="dns-prefetch" href="https://connect.facebook.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://www.clarity.ms"/&gt;
+&lt;link rel="dns-prefetch" href="https://cm.everesttech.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://cm.g.doubleclick.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://dpm.demdex.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://munchkin.marketo.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://pixel.everesttech.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://pnapi.invoca.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://px.ads.linkedin.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://script.crazyegg.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://siteintercept.qualtrics.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://snap.licdn.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://solutions.invocacdn.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://sync.tm.everesttech.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://www.everestjs.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://x.clarity.ms"/&gt;
+
+    
+
+
+&lt;script type="text/javascript"&gt;
+    !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+        (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+        f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+        h&amp;&amp;h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+            e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+        rg4js('apiKey', '');
+        rg4js('enableCrashReporting', '');
+        rg4js('enablePulse', '');
+&lt;/script&gt;
+
+    &lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/sourcesanspro-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/sourcesanspro-semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/sourcesanspro-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/unineue-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/unineue-heavy.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts/resources/beam/fonts/unineue-book.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+
+&lt;link rel="preload" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-icons/resources/beam/fonts/beam-icons.woff2" as="font" type="font/woff2" crossorigin="anonymous"/&gt;
+
+
+    
+
+    &lt;!-- prehiding for target - start --&gt;
+&lt;!--&lt;sly data-sly-include="prehiding.html"/&gt;--&gt;
+&lt;!-- prehiding for target - end --&gt;
+
+&lt;!-- customheaderlibs - start --&gt;
+
+&lt;!-- customheaderlibs - end --&gt;
+
+    
+
+&lt;!-- headlibs.html - start --&gt;
+
+    
+
+    
+
+    
+
+    
+        &lt;script type="text/javascript" src="//assets.adobedtm.com/138ddf5a8359/0880e83f9587/launch-ba9586140784.min.js" defer="defer"&gt;&lt;/script&gt;
+
+
+
+    
+    
+
+
+
+    
+    
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam.min.7fabe1fd36f73e7aa41526aed1c423c5.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-structure.min.2c3aba6e59d86bfbaf1658a6138f7065.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-form.min.d41d8cd98f00b204e9800998ecf8427e.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-icons.min.9158497ba37e621d5b29b056c48556b3.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts.min.26f6a9b54ec13903216b6244f47e10d5.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-components.min.d2bec7b20a701d3dbd8d4f415619901e.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-site.min.e79bcf79c70b2d95eae20965988bd3b6.css" type="text/css"&gt;
+
+
+
+    
+
+&lt;!-- headlibs.html - end --&gt;
+
+
+
+    
+    &lt;link rel="icon" sizes="192x192" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-resources/resources/icons/favicon.png"/&gt;
+
+&lt;/head&gt;
+
+
+&lt;body data-component-js="PageHelpers"&gt;
+     &lt;header&gt;
+
+    
+
+    &lt;div class="cmp-experiencefragment cmp-experiencefragment--" data-xf-path="/content/experience-fragments/viasat/us/en/structure/header/master"&gt;
+        &lt;div class="xfpage page basicpage"&gt;&lt;div class="xf-web-container" data-xf-path="/content/experience-fragments/viasat/us/en/structure/header/master"&gt;
+    
+
+    
+
+    &lt;div class="root-container bridge2basepage"&gt;
+    
+    
+    
+    &lt;div class="cmp-container"&gt;
+        
+        &lt;div class="header-block expand-collapse-component header-block--with-utility-bar"&gt;
+    
+    
+    
+    &lt;div class="cmp-container"&gt;
+        
+        &lt;div class="row-container header-block__utility-bar row-container--full-width row-container--child-auto-size color row-container--surface-teal-700"&gt;
+  &lt;div class="cmp-row-container
+      
+      " data-component-js="HeaderUtilityBar"&gt;
+      
+  &lt;div class="cmp-row-container--content container"&gt;
+    
+
+&lt;div class="aem-Grid row "&gt;
+
+    
+
+    &lt;div class="base-container header-block__utility-bar-left col-sm-auto col-auto col-md-auto offset-xs-0 col-sm-none col-xs-none col-lg-none offset-lg-0 aem-GridColumn col-md-none offset-sm-0 offset-md-0 col-xs-auto col-lg-auto"&gt;
+    
+    &lt;div class="cmp-container"&gt;
+        &lt;div class="cmp-container--content"&gt;
+          
+
+&lt;div class="aem-Grid row "&gt;
+
+    
+
+    &lt;nav class="nav-menu utility-bar__main-menu col-lg-12 offset-xs-0 col-sm-none col-sm-12 col-xs-none col-xs-12 col-12 col-lg-none offset-lg-0 aem-GridColumn col-md-none offset-sm-0 col-md-12 offset-md-0"&gt;
+    
+
+    
+    
+    
+
+    &lt;!-- NavMenu Component - Start --&gt;
+    &lt;ul role="menubar" aria-label="top-menu" data-debug-nav-list="/content/dam/viasat/navigation/content/viasat/us/en/main-menu" data-debug-nav-list-count="5"&gt;
+
+   ... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20231219 16:00:57.668" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:57.365" endtime="20231219 16:00:57.669"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:57.669" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:57.669" endtime="20231219 16:00:57.669"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:57.363" endtime="20231219 16:00:57.670"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:57.363" endtime="20231219 16:00:57.670"/>
+</test>
+<test id="s1-s1-t9" name="Full Domain and Path" line="58">
+<kw name="Get_Request_Redirect">
+<arg>full_path</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/savenow</arg>
+<arg>https://www.viasat.com/satellite-internet/best-offer/?cid=TVN_US_2022_HURAFAPS49</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:57.671" level="INFO">Creating Session using : alias=full_path, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:57.671" endtime="20231219 16:00:57.671"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:57.834" level="INFO">GET Request : url=https://www.viasat.com/savenow 
+ path_url=/savenow 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:57.834" level="INFO">GET Response : url=https://www.viasat.com/savenow 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:57 GMT', 'X-Viasat-FWD': 'redirect-lookup', 'Location': 'https://www.viasat.com/satellite-internet/best-offer/?cid=TVN_US_2022_HURAFAPS49', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 fc9b6e8f934a073c1a1983c7599b93ba.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'svKbI7a1h7c7vW9bwNdmPfhuULxNADVRwROpYCT8DgTOG9bnmJpuBA=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:57.834" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:57.672" endtime="20231219 16:00:57.834"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:57.835" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:57.834" endtime="20231219 16:00:57.835"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:57.836" level="INFO">${location_header} = https://www.viasat.com/satellite-internet/best-offer/?cid=TVN_US_2022_HURAFAPS49</msg>
+<status status="PASS" starttime="20231219 16:00:57.835" endtime="20231219 16:00:57.836"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:57.836" endtime="20231219 16:00:57.837"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:57.670" endtime="20231219 16:00:57.837"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:57.670" endtime="20231219 16:00:57.837"/>
+</test>
+<test id="s1-s1-t10" name="Full Domain and Friendly" line="60">
+<kw name="Get_Request_Redirect">
+<arg>full_friendly</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/savenow/</arg>
+<arg>https://www.viasat.com/satellite-internet/best-offer/?cid=TVN_US_2022_HURAFAPS49</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:57.840" level="INFO">Creating Session using : alias=full_friendly, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:57.839" endtime="20231219 16:00:57.840"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:58.015" level="INFO">GET Request : url=https://www.viasat.com/savenow/ 
+ path_url=/savenow/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:58.015" level="INFO">GET Response : url=https://www.viasat.com/savenow/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:58 GMT', 'X-Viasat-FWD': 'redirect-lookup', 'Location': 'https://www.viasat.com/satellite-internet/best-offer/?cid=TVN_US_2022_HURAFAPS49', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 94be61e339880d0097634de6934f7710.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': '0FU-4edbiQSybDCBV5hLrlw2jgXsjlXlOzpoJsYb-U-rY7MqSrvOYw=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:58.015" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:57.840" endtime="20231219 16:00:58.015"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:58.016" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.016" endtime="20231219 16:00:58.016"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:58.018" level="INFO">${location_header} = https://www.viasat.com/satellite-internet/best-offer/?cid=TVN_US_2022_HURAFAPS49</msg>
+<status status="PASS" starttime="20231219 16:00:58.017" endtime="20231219 16:00:58.018"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:58.018" endtime="20231219 16:00:58.018"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:57.839" endtime="20231219 16:00:58.018"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:57.838" endtime="20231219 16:00:58.019"/>
+</test>
+<test id="s1-s1-t11" name="Full Domain and AEM" line="62">
+<kw name="Get_Request_Success">
+<arg>full_aem</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/about/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:58.020" level="INFO">Creating Session using : alias=full_aem, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:58.020" endtime="20231219 16:00:58.021"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:58.233" level="INFO">GET Request : url=https://www.viasat.com/about/ 
+ path_url=/about/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:58.234" level="INFO">GET Response : url=https://www.viasat.com/about/ 
+ status=200, reason=OK 
+ headers={'Content-Type': 'text/html;charset=utf-8', 'Content-Length': '24593', 'Connection': 'keep-alive', 'Date': 'Tue, 19 Dec 2023 23:04:21 GMT', 'Set-Cookie': 'AWSALB=p5JyYC+Hdfm4PsPTy6PzTjn4DSgFlyAWyYc2TJ4KbWwioNWdiSO46s29WzDw6cL3rMzj/l3Zg0YFrxr37Co9gvedVkxTXANjKH31C2MPELM3ytIkGfOTxzDR117X; Expires=Tue, 26 Dec 2023 23:04:21 GMT; Path=/, AWSALBCORS=p5JyYC+Hdfm4PsPTy6PzTjn4DSgFlyAWyYc2TJ4KbWwioNWdiSO46s29WzDw6cL3rMzj/l3Zg0YFrxr37Co9gvedVkxTXANjKH31C2MPELM3ytIkGfOTxzDR117X; Expires=Tue, 26 Dec 2023 23:04:21 GMT; Path=/; SameSite=None; Secure', 'Server': 'Apache', 'X-Dispatcher': 'dispatcher2useast1', 'X-Vhost': 'publish', 'Strict-Transport-Security': 'max-age=63072000', 'X-XSS-Protection': '1; mode=block', 'referrer-policy': 'strict-origin-when-cross-origin', 'Cache-Control': 'public, max-age=43200', 'X-Content-Type-Options': 'nosniff', 'Accept-Ranges': 'bytes', 'Content-Encoding': 'gzip', 'X-Frame-Options': 'SAMEORIGIN', 'Vary': 'Accept-Encoding, Origin', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Content-Security-Policy': "default-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com ; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.infinity-tracking.com *.adsrvr.org *.demandbase.com *.bing.com *.google.com *.cookielaw.org *.doubleclick.net *.adobedtm.com *.everestjs.net *.clarity.ms *.marketo.com *.scene7.com *.qualtrics.com *.conductor.com *.viasat.com *.amazonaws.com qvdt3feo.com *.googleadservices.com *.google-analytics.com *.googletagmanager.com *.googleapis.com *.adobedtm.com *.sftoaa.com *.everestjs.net *.invocacdn.com *.invoca.net *.marketo.net *.crazyegg.com *.licdn.com *.facebook.net viasatinc.data.adobedc.net *.raygun.io *.bizible.com siteintercept.qualtrics.com *.icat.viasat.io tags.srv.stackadapt.com  ; frame-src 'self' *.youtube.com *.marketo.com *.adsrvr.org *.facebook.com *.company-target.com *.az1.qualtrics.com *.opendns.com *.adsrvr.cn *.doubleclick.net *.everesttech.net *.demdex.net *.everestjs.net *.force.com *.crazyegg.com ca-viasat-status.s3.amazonaws.com  ; img-src 'self' https: data:  ; media-src 'self' *.scene7.com  ; script-src-elem 'self' https: 'unsafe-inline'  ; connect-src 'self' 'unsafe-inline' *.demandbase.com *.infinity-tracking.net *.infinity-tracking.com *.onetrust.com *.company-target.com *.oribi.io *.clarity.ms *.scene7.com *.qualtrics.com *.facebook.com *.cookielaw.org *.everesttech.net google.com *.google.com *.google-analytics.com *.viasat.com *.doubleclick.net *.googleapis.com *.demdex.net *.omtrdc.net *.mktoresp.com *.crazyegg.com *.ads.linkedin.com cognito-identity.us-east-1.amazonaws.com sts.us-east-1.amazonaws.com dataplane.rum.us-east-1.amazonaws.com *.icat.viasat.io *.raygun.io *.bing.com *.invoca.net *.mktoutil.com tags.srv.stackadapt.com *.phonetrack.com * *.sftoaa.com  ; font-src 'self' fonts.gstatic.com *.googleapis.com *.icat.viasat.io *.typekit.net  ; style-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com *.googleapis.com *.amazonaws.com *.scene7.com *.gstatic.com *.miaprova.com tags.srv.stackadapt.com  ; report-uri https://report-to-api.raygun.com/reports-csp?apikey=4uWKnPZoEmyV7vSRKJeHw report-to csp-endpoint", 'Report-To': '{"group": "csp-endpoint", "max-age": 10886400, "endpoints": [ { "url": "https://report-to-api.raygun.com/reports?apikey=4uWKnPZoEmyV7vSRKJeHw" } ] }', 'X-Cache': 'Hit from cloudfront', 'Via': '1.1 497370ec058751eb0d9251f66d50af5e.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'HZ-sS_H1cJa8FZuHV1ELlySnI_BPTmarPQ0BpZVtB4q74JXbPXHskw==', 'Age': '3397'} 
+ body=
+&lt;!DOCTYPE HTML&gt;
+&lt;html lang="en"&gt;
+
+    &lt;head&gt;
+
+   &lt;meta charset="UTF-8"/&gt;
+
+   &lt;title&gt;About Viasat | Viasat&lt;/title&gt;
+
+   &lt;meta name="viewport" content="width=device-width, initial-scale=1"/&gt;
+   
+   &lt;meta name="format-detection" content="telephone=no"/&gt;
+
+   &lt;link rel="canonical" href="https://www.viasat.com/about/"/&gt;
+
+   
+
+&lt;meta name="description" content="Learn how Viasat is unlocking opportunity for the world by bringing connectivity when, where, and how it&amp;#39;s needed most."/&gt;
+
+
+   
+   
+   
+
+   &lt;!-- Facebook data --&gt;
+   &lt;meta property="og:site_name" content="Viasat.com"/&gt;
+   &lt;meta property="og:url" content="https://www.viasat.com/about/"/&gt;
+   &lt;meta property="og:type" content="website"/&gt;
+   &lt;meta property="og:title" content="About Viasat"/&gt;
+   &lt;meta property="og:description" content="Learn how Viasat is unlocking opportunity for the world by bringing connectivity when, where, and how it&amp;#39;s needed most."/&gt;
+   &lt;meta property="fb:app_id" content="440092857430654"/&gt;
+   
+   &lt;meta property="og:image" content="https://www.viasat.com/etc.clientlibs/viasat/clientlibs/clientlib-site/resources/social/ogImage.jpg"/&gt;
+   &lt;!-- End Facebook data --&gt;
+
+   &lt;!--  Twitter card data--&gt;
+   &lt;meta name="twitter:card" content="summary_large_image"/&gt;
+   &lt;meta name="twitter:site" content="@ViasatInc"/&gt;
+   
+   &lt;meta name="twitter:description" content="Learn how Viasat is unlocking opportunity for the world by bringing connectivity when, where, and how it&amp;#39;s needed most."/&gt;
+   
+   &lt;meta name="twitter:image" content="https://www.viasat.com/etc.clientlibs/viasat/clientlibs/clientlib-site/resources/social/ogImage.jpg"/&gt;
+   &lt;!--  Twitter card data End--&gt;
+
+   
+
+   &lt;script type="application/ld+json"&gt;{
+      "@context": "http://schema.org",
+      "@type": ["Organization", "WebSite"],
+      "name": "Viasat, Inc.",
+      "url": "https://www.viasat.com/about/",
+      "logo": "https://www.viasat.com/etc.clientlibs/viasat/clientlibs/clientlib-site/resources/logos/ViasatLogoDefault.svg"
+      }
+   &lt;/script&gt;
+
+
+
+
+   
+&lt;!-- Preconnect/DNS prefetch to required third party code --&gt;
+&lt;link rel="preconnect" href="https://assets.adobedtm.com"/&gt;
+&lt;link rel="preconnect" href="https://s7d1.scene7.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://app-ab24.marketo.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://bat.bing.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://beacon.sftoaa.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn.bizible.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn.cookielaw.org"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn-cs.conductor.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://cdn.raygun.io"/&gt;
+&lt;link rel="dns-prefetch" href="https://connect.facebook.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://www.clarity.ms"/&gt;
+&lt;link rel="dns-prefetch" href="https://cm.everesttech.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://cm.g.doubleclick.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://dpm.demdex.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://munchkin.marketo.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://pixel.everesttech.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://pnapi.invoca.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://px.ads.linkedin.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://script.crazyegg.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://siteintercept.qualtrics.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://snap.licdn.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://solutions.invocacdn.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://sync.tm.everesttech.com"/&gt;
+&lt;link rel="dns-prefetch" href="https://www.everestjs.net"/&gt;
+&lt;link rel="dns-prefetch" href="https://x.clarity.ms"/&gt;
+
+   
+
+
+&lt;script type="text/javascript"&gt;
+    !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+        (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+        f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+        h&amp;&amp;h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+            e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+        rg4js('apiKey', '');
+        rg4js('enableCrashReporting', '');
+        rg4js('enablePulse', '');
+&lt;/script&gt;
+
+   
+
+   &lt;!-- prehiding for target - start --&gt;
+ &lt;script&gt;  
+;(function(win, doc, style, timeout) {
+    var STYLE_ID = 'at-body-style';
+    function getParent() {
+      return doc.getElementsByTagName('head')[0];
+    }
+    function addStyle(parent, id, def) {
+      if (!parent) {
+        return;
+      }
+      var style = doc.createElement('style');
+      style.id = id;
+      style.innerHTML = def;
+      parent.appendChild(style);
+    }
+    function removeStyle(parent, id) {
+      if (!parent) {
+        return;
+      }
+      var style = doc.getElementById(id);
+      if (!style) {
+        return;
+      }
+      parent.removeChild(style);
+    }
+    addStyle(getParent(), STYLE_ID, style);
+    setTimeout(function() {
+      removeStyle(getParent(), STYLE_ID);
+    }, timeout);
+  }(window, document, "body {opacity: 0 !important}", 3000));
+&lt;/script&gt;
+&lt;!-- prehiding for target - end --&gt;
+
+&lt;!-- customheaderlibs - start --&gt;
+
+&lt;!-- customheaderlibs - end --&gt;
+
+   
+
+&lt;!-- headlibs.html - start --&gt;
+
+    
+
+    
+
+    
+
+    
+        &lt;script type="text/javascript" src="//assets.adobedtm.com/138ddf5a8359/0880e83f9587/launch-ba9586140784.min.js" defer="defer"&gt;&lt;/script&gt;
+
+
+
+    
+    
+&lt;script src="/etc.clientlibs/viasat/clientlibs/clientlib-dependencies.min.d41d8cd98f00b204e9800998ecf8427e.js"&gt;&lt;/script&gt;
+
+
+
+    
+    
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat/clientlibs/clientlib-dependencies.min.faa9724658eb50d3423bc2af77b343ff.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-form.min.d41d8cd98f00b204e9800998ecf8427e.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam.min.7fabe1fd36f73e7aa41526aed1c423c5.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-icons.min.9158497ba37e621d5b29b056c48556b3.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-fonts.min.26f6a9b54ec13903216b6244f47e10d5.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-beam-components.min.d2bec7b20a701d3dbd8d4f415619901e.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat-base/clientlibs/clientlib-bridge2basepage.min.52b23f47a72126f14e6e66110be3f188.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat/clientlibs/clientlib-base.min.a0fd2a7c03b62c49c302e79697c52cfe.css" type="text/css"&gt;
+&lt;link rel="stylesheet" href="/etc.clientlibs/viasat/clientlibs/clientlib-legacybridge2basepage.min.ff4c53a76c797f7a0fe49725d48367db.css" type="text/css"&gt;
+
+
+
+    
+
+&lt;!-- headlibs.html - end --&gt;
+
+
+
+   
+    &lt;link rel="icon" sizes="192x192" href="/etc.clientlibs/viasat/clientlibs/clientlib-site/resources/images/icon/favicon.png"/&gt;
+
+
+&lt;/head&gt;
+
+    &lt;body class="page basicpage " id="page-a05d5fbf9d"&gt;
+
+        
+
+        
+
+        
+            
+
+
+
+            &lt;header&gt;
+
+    
+
+    &lt;div class="cmp-experiencefragment cmp-experiencefragment--" data-xf-path="/content/experience-fragments/viasat/us/en/structure/header/master"&gt;
+        &lt;div class="xfpage page basicpage"&gt;&lt;div class="xf-web-container" data-xf-path="/content/experience-fragments/viasat/us/en/structure/header/master"&gt;
+    
+
+    
+
+    &lt;div class="root-container bridge2basepage"&gt;
+    
+    
+    
+    &lt;div class="cmp-container"&gt;
+        
+        &lt;div class="header-block expand-collapse-component header-block--with-utility-bar"&gt;
+    
+    
+    
+    &lt;div class="cmp-container"&gt;
+        
+        &lt;div class="row-container header-block__utility-bar row-container--full-width row-container--child-auto-size color row-container--surface-teal-700"&gt;
+  &lt;div class="cmp-row-container
+      
+      " data-component-js="HeaderUtilityBar"&gt;
+      
+  &lt;div class="cmp-row-container--content container"&gt;
+    
+
+&lt;div class="aem-Grid row "&gt;
+
+    
+
+    &lt;div class="base-container header-block__utility-bar-left col-sm-auto col-auto col-md-auto offset-xs-0 col-sm-none col-xs-none col-lg-none offset-lg-0 aem-GridColumn col-md-none offset-sm-0 offset-md-0 col-xs-auto col-lg-auto"&gt;
+    
+    &lt;div class="cmp-container"&gt;
+        &lt;div class="cmp-container--content"&gt;
+          
+
+&lt;div class="aem-Grid row "&gt;
+
+    
+
+    &lt;nav class="nav-menu utility-bar__main-menu col-lg-12 offset-xs-0 col-sm-none col-sm-12 col-xs-none col-xs-12 col-12 col-lg-none offset-lg-0 aem-GridColumn col-md-none offset-sm-0 col-md-12 offset-md-0"&gt;
+    
+
+    
+    
+    
+
+    &lt;!-- NavMenu Component - Start --&gt;
+    &lt;ul role="menubar" aria-label="top-menu" data-debug-nav-list="/content/dam/viasat/navigation/content/viasat/us/en/main-menu" data-debug-nav-list-count="5"&gt;
+
+        
+
+        &lt;!-- list of other child link items --&gt;
+        
+    
+    
+
+    &lt;!-- NavList Component - Start --&gt;
+    
+        &lt;li role="none"&gt;
+            
+                &lt;!-- NavList Component - Render Link --&gt;
+                
+    &lt;a role="menuitem" href="/satellite-internet/" data-title="Satellite internet" aria-haspopup="false" aria-expanded="false" data-debug-type="LINK" data-debug-title="Satellite internet" data-debug-link="/satellite-internet/"&gt;
+        
+        &lt;span class="link-text" aria-hidden="true"&gt;Satellite internet&lt;/span&gt;
+        
+        
+    &lt;/a&gt;
+
+            
+
+            
+        &lt;/li&gt;
+    
+        &lt;li role="none"&gt;
+            
+                &lt;!-- NavList Component - Render Link --&gt;
+                
+    &lt;a role="menuitem" href="/enterprise-and-mobility/" data-title="Enterprise &amp;amp; Mobility" aria-haspopup="false" aria-expanded="false" data-debug-type="LINK" data-debug-title="Enterprise &amp;amp; Mobility" data-debug-link="/enterprise-and-mobility/"&gt;
+        
+        &lt;span class="link-text" aria-hidden="true"&gt;Enterprise &amp;amp; Mobility&lt;/span&gt;
+        
+        
+    &lt;/a&gt;
+
+            
+
+            
+        &lt;/li&gt;
+    
+        &lt;li ... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20231219 16:00:58.234" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.021" endtime="20231219 16:00:58.234"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:58.236" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.235" endtime="20231219 16:00:58.236"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.020" endtime="20231219 16:00:58.236"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.019" endtime="20231219 16:00:58.236"/>
+</test>
+<test id="s1-s1-t12" name="Full Domain and PDF" line="64">
+<kw name="Get_Request_Redirect">
+<arg>full_pdf</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/files/assets/web/datasheets/FEC_IPCores_111.pdf</arg>
+<arg>https://www.viasat.com/space-innovation/space-and-networking-technology/asics-and-ip-cores/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:58.238" level="INFO">Creating Session using : alias=full_pdf, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:58.237" endtime="20231219 16:00:58.238"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:58.406" level="INFO">GET Request : url=https://www.viasat.com/files/assets/web/datasheets/FEC_IPCores_111.pdf 
+ path_url=/files/assets/web/datasheets/FEC_IPCores_111.pdf 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:58.406" level="INFO">GET Response : url=https://www.viasat.com/files/assets/web/datasheets/FEC_IPCores_111.pdf 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:58 GMT', 'X-Viasat-FWD': 'redirect-pdf-lookup', 'Location': 'https://www.viasat.com/space-innovation/space-and-networking-technology/asics-and-ip-cores/', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 ce74b5c96395745bcb8206d6c9ee0962.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'WOFrWuqbZ9sUVmaBD2xRXIATAFLPlVD72p0vI9cqV6JnJ_XndmcwHA=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:58.406" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.238" endtime="20231219 16:00:58.406"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:58.407" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.406" endtime="20231219 16:00:58.407"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:58.408" level="INFO">${location_header} = https://www.viasat.com/space-innovation/space-and-networking-technology/asics-and-ip-cores/</msg>
+<status status="PASS" starttime="20231219 16:00:58.407" endtime="20231219 16:00:58.408"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:58.408" endtime="20231219 16:00:58.409"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.237" endtime="20231219 16:00:58.409"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.236" endtime="20231219 16:00:58.409"/>
+</test>
+<test id="s1-s1-t13" name="Energy Domain and No Path" line="67">
+<kw name="Get_Request_Redirect">
+<arg>energy_nopath</arg>
+<arg>${ENERGY_DOMAIN}</arg>
+<arg>${null}</arg>
+<arg>https://www.viasat.com/enterprise-and-mobility/industries/energy</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:58.410" level="INFO">Creating Session using : alias=energy_nopath, url=https://energy.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:58.410" endtime="20231219 16:00:58.411"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:58.656" level="INFO">GET Request : url=https://energy.viasat.com/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:58.656" level="INFO">GET Response : url=https://energy.viasat.com/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:58 GMT', 'X-Viasat-FWD': 'regex-redirect-lookup', 'Location': 'https://www.viasat.com/enterprise-and-mobility/industries/energy', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 912d83c7c9b4676eb19f09c9bfabda24.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'm6UdqQWjeGPloy3a2sH5rrWxY9RqHSG7qaVxu-wBpwLgdbJBQf7Gpw=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:58.656" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.411" endtime="20231219 16:00:58.656"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:58.657" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.657" endtime="20231219 16:00:58.658"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:58.659" level="INFO">${location_header} = https://www.viasat.com/enterprise-and-mobility/industries/energy</msg>
+<status status="PASS" starttime="20231219 16:00:58.658" endtime="20231219 16:00:58.659"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:58.659" endtime="20231219 16:00:58.659"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.410" endtime="20231219 16:00:58.659"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.409" endtime="20231219 16:00:58.660"/>
+</test>
+<test id="s1-s1-t14" name="Energy Domain and Root Path" line="69">
+<kw name="Get_Request_Redirect">
+<arg>energy_rootpath</arg>
+<arg>${ENERGY_DOMAIN}</arg>
+<arg>/</arg>
+<arg>https://www.viasat.com/enterprise-and-mobility/industries/energy</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:58.661" level="INFO">Creating Session using : alias=energy_rootpath, url=https://energy.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:58.661" endtime="20231219 16:00:58.661"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:58.844" level="INFO">GET Request : url=https://energy.viasat.com/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:58.844" level="INFO">GET Response : url=https://energy.viasat.com/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:58 GMT', 'X-Viasat-FWD': 'regex-redirect-lookup', 'Location': 'https://www.viasat.com/enterprise-and-mobility/industries/energy', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 40b967aa4aa18637c4b91214147f3cb4.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'ehWfSKJsqjN8RbK-Cpx_n6PT9_zUNJXQ8HaaWsf7mm1LTbsIu6h7_g=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:58.844" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.661" endtime="20231219 16:00:58.844"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:58.845" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.844" endtime="20231219 16:00:58.845"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:58.846" level="INFO">${location_header} = https://www.viasat.com/enterprise-and-mobility/industries/energy</msg>
+<status status="PASS" starttime="20231219 16:00:58.845" endtime="20231219 16:00:58.846"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:58.846" endtime="20231219 16:00:58.847"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.660" endtime="20231219 16:00:58.847"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.660" endtime="20231219 16:00:58.847"/>
+</test>
+<test id="s1-s1-t15" name="Energy Domain and Path" line="71">
+<kw name="Get_Request_Redirect">
+<arg>energy_path</arg>
+<arg>${ENERGY_DOMAIN}</arg>
+<arg>/savenow</arg>
+<arg>https://www.viasat.com/enterprise-and-mobility/industries/energy</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:58.849" level="INFO">Creating Session using : alias=energy_path, url=https://energy.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:58.849" endtime="20231219 16:00:58.849"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:59.038" level="INFO">GET Request : url=https://energy.viasat.com/savenow 
+ path_url=/savenow 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.038" level="INFO">GET Response : url=https://energy.viasat.com/savenow 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:59 GMT', 'X-Viasat-FWD': 'regex-redirect-lookup', 'Location': 'https://www.viasat.com/enterprise-and-mobility/industries/energy', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 d32136caad5f6a80e6bec65185c2a290.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'U464_cHGL5WWH1IwXLJAAskb1eZb3hOz1zaXnAD1MHdsfkVs5XaE_A=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.038" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:58.849" endtime="20231219 16:00:59.038"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:59.039" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.038" endtime="20231219 16:00:59.039"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:59.040" level="INFO">${location_header} = https://www.viasat.com/enterprise-and-mobility/industries/energy</msg>
+<status status="PASS" starttime="20231219 16:00:59.039" endtime="20231219 16:00:59.040"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:59.040" endtime="20231219 16:00:59.040"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.848" endtime="20231219 16:00:59.040"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:58.847" endtime="20231219 16:00:59.041"/>
+</test>
+<test id="s1-s1-t16" name="Energy Domain and Friendly" line="73">
+<kw name="Get_Request_Redirect">
+<arg>energy_friendly</arg>
+<arg>${ENERGY_DOMAIN}</arg>
+<arg>/savenow/</arg>
+<arg>https://www.viasat.com/enterprise-and-mobility/industries/energy</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:59.042" level="INFO">Creating Session using : alias=energy_friendly, url=https://energy.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:59.042" endtime="20231219 16:00:59.042"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:59.233" level="INFO">GET Request : url=https://energy.viasat.com/savenow/ 
+ path_url=/savenow/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.234" level="INFO">GET Response : url=https://energy.viasat.com/savenow/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:59 GMT', 'X-Viasat-FWD': 'regex-redirect-lookup', 'Location': 'https://www.viasat.com/enterprise-and-mobility/industries/energy', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 773ca14e6bd4bf9244988cb69fc9dca8.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'viCQRnx_MsMba_mdg6jqw8obPjDGkBrcdq-6PXslhZkEeg6f1S4ILQ=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.234" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.043" endtime="20231219 16:00:59.234"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:59.235" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.234" endtime="20231219 16:00:59.235"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:59.236" level="INFO">${location_header} = https://www.viasat.com/enterprise-and-mobility/industries/energy</msg>
+<status status="PASS" starttime="20231219 16:00:59.235" endtime="20231219 16:00:59.236"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:59.236" endtime="20231219 16:00:59.237"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.041" endtime="20231219 16:00:59.237"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.041" endtime="20231219 16:00:59.237"/>
+</test>
+<test id="s1-s1-t17" name="Blog Full Domain parent" line="76">
+<kw name="Get_Request_Redirect">
+<arg>blog_parent</arg>
+<arg>${ENERGY_DOMAIN}</arg>
+<arg>${null}</arg>
+<arg>https://www.viasat.com/enterprise-and-mobility/industries/energy</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:59.239" level="INFO">Creating Session using : alias=blog_parent, url=https://energy.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:59.238" endtime="20231219 16:00:59.239"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:59.454" level="INFO">GET Request : url=https://energy.viasat.com/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.454" level="INFO">GET Response : url=https://energy.viasat.com/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:59 GMT', 'X-Viasat-FWD': 'regex-redirect-lookup', 'Location': 'https://www.viasat.com/enterprise-and-mobility/industries/energy', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 7b00c3fd9220034414107b03e53b1b8e.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'ioBxHaprDeFXw28SVGZLb-EPSKCbxfu7hIeHH9wCnWk_Dg4FWfj9jg=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.455" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.239" endtime="20231219 16:00:59.455"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:59.456" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.455" endtime="20231219 16:00:59.456"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:59.457" level="INFO">${location_header} = https://www.viasat.com/enterprise-and-mobility/industries/energy</msg>
+<status status="PASS" starttime="20231219 16:00:59.456" endtime="20231219 16:00:59.457"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:59.457" endtime="20231219 16:00:59.457"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.238" endtime="20231219 16:00:59.457"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.237" endtime="20231219 16:00:59.457"/>
+</test>
+<test id="s1-s1-t18" name="Blog Full Domain child" line="78">
+<kw name="Get_Request_Redirect">
+<arg>blog_child</arg>
+<arg>${ENERGY_DOMAIN}</arg>
+<arg>/</arg>
+<arg>https://www.viasat.com/enterprise-and-mobility/industries/energy</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:59.459" level="INFO">Creating Session using : alias=blog_child, url=https://energy.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:59.459" endtime="20231219 16:00:59.459"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:59.629" level="INFO">GET Request : url=https://energy.viasat.com/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.629" level="INFO">GET Response : url=https://energy.viasat.com/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:59 GMT', 'X-Viasat-FWD': 'regex-redirect-lookup', 'Location': 'https://www.viasat.com/enterprise-and-mobility/industries/energy', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 74aa91fe819001bcedd882694f52b436.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'p7n2lBd1NyCgCSbGEESEow1PbNGikOoo9FJDXKDygABAaJlcQyqBKA=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.629" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.459" endtime="20231219 16:00:59.629"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:59.630" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.629" endtime="20231219 16:00:59.630"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:59.631" level="INFO">${location_header} = https://www.viasat.com/enterprise-and-mobility/industries/energy</msg>
+<status status="PASS" starttime="20231219 16:00:59.630" endtime="20231219 16:00:59.631"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:59.631" endtime="20231219 16:00:59.632"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.458" endtime="20231219 16:00:59.632"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.458" endtime="20231219 16:00:59.632"/>
+</test>
+<test id="s1-s1-t19" name="Blog Full Domain BR parent" line="80">
+<kw name="Get_Request_Redirect">
+<arg>blog_br_parent</arg>
+<arg>${ENERGY_DOMAIN}</arg>
+<arg>/savenow</arg>
+<arg>https://www.viasat.com/enterprise-and-mobility/industries/energy</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:59.634" level="INFO">Creating Session using : alias=blog_br_parent, url=https://energy.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:59.633" endtime="20231219 16:00:59.634"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:59.822" level="INFO">GET Request : url=https://energy.viasat.com/savenow 
+ path_url=/savenow 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.822" level="INFO">GET Response : url=https://energy.viasat.com/savenow 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:00:59 GMT', 'X-Viasat-FWD': 'regex-redirect-lookup', 'Location': 'https://www.viasat.com/enterprise-and-mobility/industries/energy', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 912d83c7c9b4676eb19f09c9bfabda24.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'FUusNRsosb8vWTQao1Osbxnxof-_SjpwKI41egWLLFEkqBSFJ_8dlA=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.822" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.634" endtime="20231219 16:00:59.822"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:59.823" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.822" endtime="20231219 16:00:59.823"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:59.824" level="INFO">${location_header} = https://www.viasat.com/enterprise-and-mobility/industries/energy</msg>
+<status status="PASS" starttime="20231219 16:00:59.823" endtime="20231219 16:00:59.824"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:59.824" endtime="20231219 16:00:59.824"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.633" endtime="20231219 16:00:59.824"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.632" endtime="20231219 16:00:59.825"/>
+</test>
+<test id="s1-s1-t20" name="Blog Full Domain BR child" line="82">
+<kw name="Get_Request_Redirect">
+<arg>blog_br_child</arg>
+<arg>${ENERGY_DOMAIN}</arg>
+<arg>/savenow/</arg>
+<arg>https://www.viasat.com/enterprise-and-mobility/industries/energy</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:00:59.827" level="INFO">Creating Session using : alias=blog_br_child, url=https://energy.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:00:59.826" endtime="20231219 16:00:59.827"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:00:59.997" level="INFO">GET Request : url=https://energy.viasat.com/savenow/ 
+ path_url=/savenow/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.997" level="INFO">GET Response : url=https://energy.viasat.com/savenow/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:01:00 GMT', 'X-Viasat-FWD': 'regex-redirect-lookup', 'Location': 'https://www.viasat.com/enterprise-and-mobility/industries/energy', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 7b00c3fd9220034414107b03e53b1b8e.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'cETCBLdMS_sjM2Ox2WAp4d_BBR1nkHRAUI47fa7-ZZDHRY2-hoD9Qw=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:00:59.997" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.827" endtime="20231219 16:00:59.997"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:00:59.998" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:00:59.997" endtime="20231219 16:00:59.998"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:00:59.999" level="INFO">${location_header} = https://www.viasat.com/enterprise-and-mobility/industries/energy</msg>
+<status status="PASS" starttime="20231219 16:00:59.998" endtime="20231219 16:00:59.999"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:00:59.999" endtime="20231219 16:00:59.999"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.826" endtime="20231219 16:00:59.999"/>
+</kw>
+<status status="PASS" starttime="20231219 16:00:59.825" endtime="20231219 16:01:00.000"/>
+</test>
+<test id="s1-s1-t21" name="html extensions root path" line="85">
+<kw name="Get_Request_Redirect">
+<arg>html_rootpath</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/.html</arg>
+<arg>https://www.viasat.com/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:01:00.002" level="INFO">Creating Session using : alias=html_rootpath, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:01:00.001" endtime="20231219 16:01:00.002"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:01:00.181" level="INFO">GET Request : url=https://www.viasat.com/.html 
+ path_url=/.html 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:00.181" level="INFO">GET Response : url=https://www.viasat.com/.html 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:01:00 GMT', 'Location': 'https://www.viasat.com/', 'X-Viasat-FWD': '/.html redirect', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 773ca14e6bd4bf9244988cb69fc9dca8.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'ux1ewCZ6CCLOrQDMsipqJLNYggOq3Q40fn3bI0p-J9TU_K7eRZNgAQ=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:00.181" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:00.002" endtime="20231219 16:01:00.181"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:01:00.182" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:00.181" endtime="20231219 16:01:00.182"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:01:00.183" level="INFO">${location_header} = https://www.viasat.com/</msg>
+<status status="PASS" starttime="20231219 16:01:00.182" endtime="20231219 16:01:00.183"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:01:00.183" endtime="20231219 16:01:00.184"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.001" endtime="20231219 16:01:00.184"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.000" endtime="20231219 16:01:00.184"/>
+</test>
+<test id="s1-s1-t22" name="html extensions friendly" line="87">
+<kw name="Get_Request_Redirect">
+<arg>html_friendly</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/savenow/.html</arg>
+<arg>https://www.viasat.com/savenow/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:01:00.186" level="INFO">Creating Session using : alias=html_friendly, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:01:00.186" endtime="20231219 16:01:00.186"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:01:00.366" level="INFO">GET Request : url=https://www.viasat.com/savenow/.html 
+ path_url=/savenow/.html 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:00.366" level="INFO">GET Response : url=https://www.viasat.com/savenow/.html 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:01:00 GMT', 'Location': 'https://www.viasat.com/savenow/', 'X-Viasat-FWD': '/.html redirect', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 497370ec058751eb0d9251f66d50af5e.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'tfPITUbNAV74Gea76uoGNd_6DjWP0ZBgokckENXa17AtfsD7ZJYoqg=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:00.366" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:00.187" endtime="20231219 16:01:00.366"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:01:00.367" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:00.366" endtime="20231219 16:01:00.367"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:01:00.368" level="INFO">${location_header} = https://www.viasat.com/savenow/</msg>
+<status status="PASS" starttime="20231219 16:01:00.368" endtime="20231219 16:01:00.368"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:01:00.369" endtime="20231219 16:01:00.369"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.185" endtime="20231219 16:01:00.369"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.184" endtime="20231219 16:01:00.369"/>
+</test>
+<test id="s1-s1-t23" name="html extensions aem path" line="89">
+<kw name="Get_Request_Redirect">
+<arg>html_aem</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/about/.html</arg>
+<arg>https://www.viasat.com/about/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:01:00.371" level="INFO">Creating Session using : alias=html_aem, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:01:00.370" endtime="20231219 16:01:00.371"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:01:00.535" level="INFO">GET Request : url=https://www.viasat.com/about/.html 
+ path_url=/about/.html 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:00.535" level="INFO">GET Response : url=https://www.viasat.com/about/.html 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:01:00 GMT', 'Location': 'https://www.viasat.com/about/', 'X-Viasat-FWD': '/.html redirect', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 7b00c3fd9220034414107b03e53b1b8e.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': '26VC3kGvxwYYozjtSR9sgELcKVIlXLMsiOZorz1OcdOrtmYTS62nqQ=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:00.535" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:00.371" endtime="20231219 16:01:00.536"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:01:00.537" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:00.536" endtime="20231219 16:01:00.537"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:01:00.538" level="INFO">${location_header} = https://www.viasat.com/about/</msg>
+<status status="PASS" starttime="20231219 16:01:00.537" endtime="20231219 16:01:00.538"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:01:00.538" endtime="20231219 16:01:00.538"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.370" endtime="20231219 16:01:00.538"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.370" endtime="20231219 16:01:00.539"/>
+</test>
+<test id="s1-s1-t24" name="other extension Full Domain" line="92">
+<kw name="Get_Request_Success">
+<arg>html_full_other</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/etc.clientlibs/viasat/clientlibs/clientlib-base.css</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:01:00.540" level="INFO">Creating Session using : alias=html_full_other, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:01:00.540" endtime="20231219 16:01:00.541"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:01:00.817" level="INFO">GET Request : url=https://www.viasat.com/etc.clientlibs/viasat/clientlibs/clientlib-base.css 
+ path_url=/etc.clientlibs/viasat/clientlibs/clientlib-base.css 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:00.818" level="INFO">GET Response : url=https://www.viasat.com/etc.clientlibs/viasat/clientlibs/clientlib-base.css 
+ status=200, reason=OK 
+ headers={'Content-Type': 'text/css;charset=utf-8', 'Content-Length': '2486', 'Connection': 'keep-alive', 'Date': 'Wed, 20 Dec 2023 00:01:00 GMT', 'Set-Cookie': 'AWSALB=KIyHvp/aXriSkFMVEh+9wV4uMyQfdgpKWRYbO4zGhFeo9PVCYDbD8yvI90i9UA5tgolRzzQXa9BgIdnjLYu7JZXaftvQA5FcyZchMuKckqE5gnMM/vrJpR0Y4Q9J; Expires=Wed, 27 Dec 2023 00:01:00 GMT; Path=/, AWSALBCORS=KIyHvp/aXriSkFMVEh+9wV4uMyQfdgpKWRYbO4zGhFeo9PVCYDbD8yvI90i9UA5tgolRzzQXa9BgIdnjLYu7JZXaftvQA5FcyZchMuKckqE5gnMM/vrJpR0Y4Q9J; Expires=Wed, 27 Dec 2023 00:01:00 GMT; Path=/; SameSite=None; Secure', 'Server': 'Apache', 'X-Dispatcher': 'dispatcher2useast1', 'X-Vhost': 'publish', 'Strict-Transport-Security': 'max-age=63072000', 'X-XSS-Protection': '1; mode=block', 'referrer-policy': 'strict-origin-when-cross-origin', 'Cache-Control': 'public, max-age=604800', 'X-Content-Type-Options': 'nosniff', 'Last-Modified': 'Fri, 12 Jun 2020 20:28:50 GMT', 'ETag': '"25c1-5a7e8ecc2e480-gzip"', 'Accept-Ranges': 'bytes', 'Content-Encoding': 'gzip', 'X-Frame-Options': 'SAMEORIGIN', 'Vary': 'Accept-Encoding, Origin', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Content-Security-Policy': "default-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com ; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.infinity-tracking.com *.adsrvr.org *.demandbase.com *.bing.com *.google.com *.cookielaw.org *.doubleclick.net *.adobedtm.com *.everestjs.net *.clarity.ms *.marketo.com *.scene7.com *.qualtrics.com *.conductor.com *.viasat.com *.amazonaws.com qvdt3feo.com *.googleadservices.com *.google-analytics.com *.googletagmanager.com *.googleapis.com *.adobedtm.com *.sftoaa.com *.everestjs.net *.invocacdn.com *.invoca.net *.marketo.net *.crazyegg.com *.licdn.com *.facebook.net viasatinc.data.adobedc.net *.raygun.io *.bizible.com siteintercept.qualtrics.com *.icat.viasat.io tags.srv.stackadapt.com  ; frame-src 'self' *.youtube.com *.marketo.com *.adsrvr.org *.facebook.com *.company-target.com *.az1.qualtrics.com *.opendns.com *.adsrvr.cn *.doubleclick.net *.everesttech.net *.demdex.net *.everestjs.net *.force.com *.crazyegg.com ca-viasat-status.s3.amazonaws.com  ; img-src 'self' https: data:  ; media-src 'self' *.scene7.com  ; script-src-elem 'self' https: 'unsafe-inline'  ; connect-src 'self' 'unsafe-inline' *.demandbase.com *.infinity-tracking.net *.infinity-tracking.com *.onetrust.com *.company-target.com *.oribi.io *.clarity.ms *.scene7.com *.qualtrics.com *.facebook.com *.cookielaw.org *.everesttech.net google.com *.google.com *.google-analytics.com *.viasat.com *.doubleclick.net *.googleapis.com *.demdex.net *.omtrdc.net *.mktoresp.com *.crazyegg.com *.ads.linkedin.com cognito-identity.us-east-1.amazonaws.com sts.us-east-1.amazonaws.com dataplane.rum.us-east-1.amazonaws.com *.icat.viasat.io *.raygun.io *.bing.com *.invoca.net *.mktoutil.com tags.srv.stackadapt.com *.phonetrack.com * *.sftoaa.com  ; font-src 'self' fonts.gstatic.com *.googleapis.com *.icat.viasat.io *.typekit.net  ; style-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com *.googleapis.com *.amazonaws.com *.scene7.com *.gstatic.com *.miaprova.com tags.srv.stackadapt.com  ; report-uri https://report-to-api.raygun.com/reports-csp?apikey=4uWKnPZoEmyV7vSRKJeHw report-to csp-endpoint", 'Report-To': '{"group": "csp-endpoint", "max-age": 10886400, "endpoints": [ { "url": "https://report-to-api.raygun.com/reports?apikey=4uWKnPZoEmyV7vSRKJeHw" } ] }', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 c07670802688417c8b871124c547eb0a.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'lMNiCJg71eVMURR6RehSe_blkbHC5TtjbbuegG_rZwFwz7z965CIpQ=='} 
+ body=/*
+ *  Copyright 2019 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+.cmp-accordion__header {
+  margin: 0;
+}
+.cmp-accordion__button {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.cmp-accordion__panel--hidden {
+  display: none;
+}
+.cmp-accordion__panel--expanded {
+  display: block;
+}
+
+/*
+ *  Copyright 2018 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+.cmp-tabs__tablist {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  list-style: none;
+}
+.cmp-tabs__tab {
+  box-sizing: border-box;
+  border-bottom: 1px solid transparent;
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+.cmp-tabs__tab--active {
+  border-color: inherit;
+}
+.cmp-tabs__tabpanel {
+  display: none;
+}
+.cmp-tabs__tabpanel--active {
+  display: block;
+}
+
+/*
+ *  Copyright 2018 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+.cmp-carousel__content {
+  position: relative;
+}
+.cmp-carousel__item {
+  display: none;
+}
+.cmp-carousel__item--active {
+  display: block;
+}
+.cmp-carousel__action {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.cmp-carousel__indicators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cmp-carousel__indicator {
+  position: relative;
+  flex: 0 1 auto;
+  width: 10px;
+  height: 10px;
+  margin: 0 7px;
+  border-radius: 50%;
+  font-size: 0;
+  text-indent: -3000px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.cmp-carousel__indicator--active {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/*
+ *  Copyright 2017 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+/** @define image */
+.cmp-image__image {
+  width: 100%;
+}
+
+/*
+ *  Copyright 2017 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+/** @define image */
+.cmp-image__image {
+  width: 100%;
+}
+
+/*
+ *  Copyright 2017 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+/** @define breadcrumb */
+.cmp-breadcrumb {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+}
+.cmp-breadcrumb__item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/*
+ *  Copyright 2017 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+.cmp-search {
+  position: relative;
+}
+.cmp-search__field {
+  position: relative;
+  height: 2rem;
+}
+.cmp-search__input {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  height: 100%;
+  width: 100%;
+}
+.cmp-search__icon {
+  display: block;
+  position: absolute;
+  left: .5rem;
+  top: .5rem;
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMTE1MnB4IiBoZWlnaHQ9IjExNTJweCIgdmlld0JveD0iMCAwIDExNTIgMTE1MiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTE1MiAxMTUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGQ9Ik02NzIsMEM0MDYuOTAzLDAsMTkyLDIxNC45MDMsMTkyLDQ4MGMwLDk1LjcsMjguMDExLDE4NC44NTUsNzYuMjc1LDI1OS43MjVDMTgxLjY0Niw4MjYuMzU0LDQ4LjA3NSw5NTkuOTI1LDM2LDk3Mg0KCWMtMTgsMTgtMzYsMzYtMzYsNzJzMTgsNTQsMzYsNzJzMzYuMDEyLDM2LDcyLDM2czU0LTE4LDcyLTM2YzEyLjA3NS0xMi4wNzUsMTQ1LjY0Ni0xNDUuNjQ2LDIzMi4yNzUtMjMyLjI3NQ0KCUM0ODcuMTQ0LDkzMS45ODgsNTc2LjMsOTYwLDY3Miw5NjBjMjY1LjA5NywwLDQ4MC0yMTQuOTAzLDQ4MC00ODBDMTE1MiwyMTQuOTAzLDkzNy4wOTcsMCw2NzIsMHogTTY3Miw4MTYNCgljLTE4NS41NjgsMC0zMzYtMTUwLjQzMy0zMzYtMzM2YzAtMTg1LjU2OCwxNTAuNDMyLTMzNiwzMzYtMzM2YzE4NS41NjcsMCwzMzYsMTUwLjQzMiwzMzYsMzM2QzEwMDgsNjY1LjU2Nyw4NTcuNTY3LDgxNiw2NzIsODE2eiINCgkvPg0KPC9zdmc+DQo=");
+  background-size: contain;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+}
+.cmp-search__loading-indicator {
+  display: none;
+  position: absolute;
+  top: .5rem;
+  left: .5rem;
+  border: 3px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  animation: cmp-search__loading-indicator-spin 2s linear infinite;
+}
+@keyframes cmp-search__loading-indicator-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.cmp-search__clear {
+  display: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+.cmp-search__clear-icon {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMTE1MnB4IiBoZWlnaHQ9IjExNTJweCIgdmlld0JveD0iMCAwIDExNTIgMTE1MiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTE1MiAxMTUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGlkPSJYTUxJRF85XyIgZD0iTTgyLjYsOTM3LjJsMzYyLTM2Mkw4NCwyMTQuOGMtMTQuMS0xNC4xLTE0LjEtMzYuOSwwLTUxbDgxLjItODEuMmMxNC4xLTE0LjEsMzYuOS0xNC4xLDUxLDBsMzYwLjUsMzYwLjUNCglMOTM3LjIsODIuNmMxNC4xLTE0LjEsMzYuOS0xNC4xLDUxLDBsODEuMiw4MS4yYzE0LjEsMTQuMSwxNC4xLDM2LjksMCw1MUw3MDguOSw1NzUuM2wzNjAuNSwzNjAuNWMxNC4xLDE0LjEsMTQuMSwzNi45LDAsNTENCglsLTgxLjIsODEuMmMtMTQuMSwxNC4xLTM2LjksMTQuMS01MSwwTDU3Ni43LDcwNy41bC0zNjIsMzYyYy0xNC4xLDE0LjEtMzYuOSwxNC4xLTUxLDBsLTgxLjItODEuMg0KCUM2OC41LDk3NC4yLDY4LjUsOTUxLjMsODIuNiw5MzcuMnoiLz4NCjwvc3ZnPg0K");
+  background-size: contain;
+  width: 1rem;
+  height: 1rem;
+}
+.cmp-search__results {
+  display: none;
+  overflow-y: auto;
+  min-width: 100%;
+  max-height: 10rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999999;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+.cmp-search__item {
+  display: block;
+}
+.cmp-search__item--is-focused {
+  background-color: #ccc;
+}
+
+ 
+ </msg>
+<msg timestamp="20231219 16:01:00.818" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:00.541" endtime="20231219 16:01:00.818"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:01:00.819" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:00.818" endtime="20231219 16:01:00.819"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.540" endtime="20231219 16:01:00.819"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.539" endtime="20231219 16:01:00.820"/>
+</test>
+<test id="s1-s1-t25" name="other extension Short Domain" line="94">
+<kw name="Get_Request_Success">
+<arg>html_short_other</arg>
+<arg>${SHORT_DOMAIN}</arg>
+<arg>/etc.clientlibs/viasat/clientlibs/clientlib-base.css</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:01:00.821" level="INFO">Creating Session using : alias=html_short_other, url=https://viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:01:00.821" endtime="20231219 16:01:00.822"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:01:01.101" level="INFO">GET Request : url=https://viasat.com/etc.clientlibs/viasat/clientlibs/clientlib-base.css 
+ path_url=/etc.clientlibs/viasat/clientlibs/clientlib-base.css 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:01.101" level="INFO">GET Response : url=https://viasat.com/etc.clientlibs/viasat/clientlibs/clientlib-base.css 
+ status=200, reason=OK 
+ headers={'Content-Type': 'text/css;charset=utf-8', 'Content-Length': '2486', 'Connection': 'keep-alive', 'Date': 'Wed, 20 Dec 2023 00:01:01 GMT', 'Set-Cookie': 'AWSALB=y5MBDjIZGzAZYflrDPZ/kn9cv+u6TKi7gyRobmbONvGKWS74htBD8YpJ3oHrzCM4gVzYX71HGJvR8qSg1NxFUKQNnUSPS+MoViyHU/WYuIjN0ROCPKZZd+ury4Kx; Expires=Wed, 27 Dec 2023 00:01:01 GMT; Path=/, AWSALBCORS=y5MBDjIZGzAZYflrDPZ/kn9cv+u6TKi7gyRobmbONvGKWS74htBD8YpJ3oHrzCM4gVzYX71HGJvR8qSg1NxFUKQNnUSPS+MoViyHU/WYuIjN0ROCPKZZd+ury4Kx; Expires=Wed, 27 Dec 2023 00:01:01 GMT; Path=/; SameSite=None; Secure', 'Server': 'Apache', 'X-Dispatcher': 'dispatcher1useast1', 'X-Vhost': 'publish', 'Strict-Transport-Security': 'max-age=63072000', 'X-XSS-Protection': '1; mode=block', 'referrer-policy': 'strict-origin-when-cross-origin', 'Cache-Control': 'public, max-age=604800', 'X-Content-Type-Options': 'nosniff', 'Last-Modified': 'Fri, 12 Jun 2020 20:28:50 GMT', 'ETag': '"25c1-5a7e8ecc2e480-gzip"', 'Accept-Ranges': 'bytes', 'Content-Encoding': 'gzip', 'X-Frame-Options': 'SAMEORIGIN', 'Vary': 'Accept-Encoding, Origin', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Content-Security-Policy': "default-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com ; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.infinity-tracking.com *.adsrvr.org *.demandbase.com *.bing.com *.google.com *.cookielaw.org *.doubleclick.net *.adobedtm.com *.everestjs.net *.clarity.ms *.marketo.com *.scene7.com *.qualtrics.com *.conductor.com *.viasat.com *.amazonaws.com qvdt3feo.com *.googleadservices.com *.google-analytics.com *.googletagmanager.com *.googleapis.com *.adobedtm.com *.sftoaa.com *.everestjs.net *.invocacdn.com *.invoca.net *.marketo.net *.crazyegg.com *.licdn.com *.facebook.net viasatinc.data.adobedc.net *.raygun.io *.bizible.com siteintercept.qualtrics.com *.icat.viasat.io tags.srv.stackadapt.com  ; frame-src 'self' *.youtube.com *.marketo.com *.adsrvr.org *.facebook.com *.company-target.com *.az1.qualtrics.com *.opendns.com *.adsrvr.cn *.doubleclick.net *.everesttech.net *.demdex.net *.everestjs.net *.force.com *.crazyegg.com ca-viasat-status.s3.amazonaws.com  ; img-src 'self' https: data:  ; media-src 'self' *.scene7.com  ; script-src-elem 'self' https: 'unsafe-inline'  ; connect-src 'self' 'unsafe-inline' *.demandbase.com *.infinity-tracking.net *.infinity-tracking.com *.onetrust.com *.company-target.com *.oribi.io *.clarity.ms *.scene7.com *.qualtrics.com *.facebook.com *.cookielaw.org *.everesttech.net google.com *.google.com *.google-analytics.com *.viasat.com *.doubleclick.net *.googleapis.com *.demdex.net *.omtrdc.net *.mktoresp.com *.crazyegg.com *.ads.linkedin.com cognito-identity.us-east-1.amazonaws.com sts.us-east-1.amazonaws.com dataplane.rum.us-east-1.amazonaws.com *.icat.viasat.io *.raygun.io *.bing.com *.invoca.net *.mktoutil.com tags.srv.stackadapt.com *.phonetrack.com * *.sftoaa.com  ; font-src 'self' fonts.gstatic.com *.googleapis.com *.icat.viasat.io *.typekit.net  ; style-src 'self' 'unsafe-inline' *.scene7.com *.marketo.com *.googleapis.com *.amazonaws.com *.scene7.com *.gstatic.com *.miaprova.com tags.srv.stackadapt.com  ; report-uri https://report-to-api.raygun.com/reports-csp?apikey=4uWKnPZoEmyV7vSRKJeHw report-to csp-endpoint", 'Report-To': '{"group": "csp-endpoint", "max-age": 10886400, "endpoints": [ { "url": "https://report-to-api.raygun.com/reports?apikey=4uWKnPZoEmyV7vSRKJeHw" } ] }', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 3dde68f1f52282c9e1ee336d97233b0a.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'BxtWwYmVRmSJ_llPaHPolvNexhRE3L8eAR-vnKScEGLUIoNDN1Z3og=='} 
+ body=/*
+ *  Copyright 2019 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+.cmp-accordion__header {
+  margin: 0;
+}
+.cmp-accordion__button {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.cmp-accordion__panel--hidden {
+  display: none;
+}
+.cmp-accordion__panel--expanded {
+  display: block;
+}
+
+/*
+ *  Copyright 2018 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+.cmp-tabs__tablist {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  list-style: none;
+}
+.cmp-tabs__tab {
+  box-sizing: border-box;
+  border-bottom: 1px solid transparent;
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+.cmp-tabs__tab--active {
+  border-color: inherit;
+}
+.cmp-tabs__tabpanel {
+  display: none;
+}
+.cmp-tabs__tabpanel--active {
+  display: block;
+}
+
+/*
+ *  Copyright 2018 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+.cmp-carousel__content {
+  position: relative;
+}
+.cmp-carousel__item {
+  display: none;
+}
+.cmp-carousel__item--active {
+  display: block;
+}
+.cmp-carousel__action {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.cmp-carousel__indicators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cmp-carousel__indicator {
+  position: relative;
+  flex: 0 1 auto;
+  width: 10px;
+  height: 10px;
+  margin: 0 7px;
+  border-radius: 50%;
+  font-size: 0;
+  text-indent: -3000px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.cmp-carousel__indicator--active {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/*
+ *  Copyright 2017 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+/** @define image */
+.cmp-image__image {
+  width: 100%;
+}
+
+/*
+ *  Copyright 2017 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+/** @define image */
+.cmp-image__image {
+  width: 100%;
+}
+
+/*
+ *  Copyright 2017 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+/** @define breadcrumb */
+.cmp-breadcrumb {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+}
+.cmp-breadcrumb__item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/*
+ *  Copyright 2017 Adobe
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+.cmp-search {
+  position: relative;
+}
+.cmp-search__field {
+  position: relative;
+  height: 2rem;
+}
+.cmp-search__input {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  height: 100%;
+  width: 100%;
+}
+.cmp-search__icon {
+  display: block;
+  position: absolute;
+  left: .5rem;
+  top: .5rem;
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMTE1MnB4IiBoZWlnaHQ9IjExNTJweCIgdmlld0JveD0iMCAwIDExNTIgMTE1MiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTE1MiAxMTUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGQ9Ik02NzIsMEM0MDYuOTAzLDAsMTkyLDIxNC45MDMsMTkyLDQ4MGMwLDk1LjcsMjguMDExLDE4NC44NTUsNzYuMjc1LDI1OS43MjVDMTgxLjY0Niw4MjYuMzU0LDQ4LjA3NSw5NTkuOTI1LDM2LDk3Mg0KCWMtMTgsMTgtMzYsMzYtMzYsNzJzMTgsNTQsMzYsNzJzMzYuMDEyLDM2LDcyLDM2czU0LTE4LDcyLTM2YzEyLjA3NS0xMi4wNzUsMTQ1LjY0Ni0xNDUuNjQ2LDIzMi4yNzUtMjMyLjI3NQ0KCUM0ODcuMTQ0LDkzMS45ODgsNTc2LjMsOTYwLDY3Miw5NjBjMjY1LjA5NywwLDQ4MC0yMTQuOTAzLDQ4MC00ODBDMTE1MiwyMTQuOTAzLDkzNy4wOTcsMCw2NzIsMHogTTY3Miw4MTYNCgljLTE4NS41NjgsMC0zMzYtMTUwLjQzMy0zMzYtMzM2YzAtMTg1LjU2OCwxNTAuNDMyLTMzNiwzMzYtMzM2YzE4NS41NjcsMCwzMzYsMTUwLjQzMiwzMzYsMzM2QzEwMDgsNjY1LjU2Nyw4NTcuNTY3LDgxNiw2NzIsODE2eiINCgkvPg0KPC9zdmc+DQo=");
+  background-size: contain;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+}
+.cmp-search__loading-indicator {
+  display: none;
+  position: absolute;
+  top: .5rem;
+  left: .5rem;
+  border: 3px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  animation: cmp-search__loading-indicator-spin 2s linear infinite;
+}
+@keyframes cmp-search__loading-indicator-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.cmp-search__clear {
+  display: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+.cmp-search__clear-icon {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMTE1MnB4IiBoZWlnaHQ9IjExNTJweCIgdmlld0JveD0iMCAwIDExNTIgMTE1MiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTE1MiAxMTUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGlkPSJYTUxJRF85XyIgZD0iTTgyLjYsOTM3LjJsMzYyLTM2Mkw4NCwyMTQuOGMtMTQuMS0xNC4xLTE0LjEtMzYuOSwwLTUxbDgxLjItODEuMmMxNC4xLTE0LjEsMzYuOS0xNC4xLDUxLDBsMzYwLjUsMzYwLjUNCglMOTM3LjIsODIuNmMxNC4xLTE0LjEsMzYuOS0xNC4xLDUxLDBsODEuMiw4MS4yYzE0LjEsMTQuMSwxNC4xLDM2LjksMCw1MUw3MDguOSw1NzUuM2wzNjAuNSwzNjAuNWMxNC4xLDE0LjEsMTQuMSwzNi45LDAsNTENCglsLTgxLjIsODEuMmMtMTQuMSwxNC4xLTM2LjksMTQuMS01MSwwTDU3Ni43LDcwNy41bC0zNjIsMzYyYy0xNC4xLDE0LjEtMzYuOSwxNC4xLTUxLDBsLTgxLjItODEuMg0KCUM2OC41LDk3NC4yLDY4LjUsOTUxLjMsODIuNiw5MzcuMnoiLz4NCjwvc3ZnPg0K");
+  background-size: contain;
+  width: 1rem;
+  height: 1rem;
+}
+.cmp-search__results {
+  display: none;
+  overflow-y: auto;
+  min-width: 100%;
+  max-height: 10rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999999;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+.cmp-search__item {
+  display: block;
+}
+.cmp-search__item--is-focused {
+  background-color: #ccc;
+}
+
+ 
+ </msg>
+<msg timestamp="20231219 16:01:01.102" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:00.822" endtime="20231219 16:01:01.102"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:01:01.103" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:01.102" endtime="20231219 16:01:01.103"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.821" endtime="20231219 16:01:01.103"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:00.820" endtime="20231219 16:01:01.104"/>
+</test>
+<test id="s1-s1-t26" name="to help short domain and path" line="97">
+<kw name="Get_Request_Redirect">
+<arg>short_help_path</arg>
+<arg>${SHORT_DOMAIN}</arg>
+<arg>/voice</arg>
+<arg>https://help.viasat.com/s/article/Adding-Viasat-Voice</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:01:01.105" level="INFO">Creating Session using : alias=short_help_path, url=https://viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:01:01.105" endtime="20231219 16:01:01.106"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:01:01.274" level="INFO">GET Request : url=https://viasat.com/voice 
+ path_url=/voice 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:01.274" level="INFO">GET Response : url=https://viasat.com/voice 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:01:01 GMT', 'X-Viasat-FWD': 'redirect-lookup', 'Location': 'https://help.viasat.com/s/article/Adding-Viasat-Voice', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 65cd593770fc4ba0453da1c7897f675c.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'Ui9wyxv6TJEUAOtt7UqtchhZ_XRKyDQurEEsluOJAMD5jT7m--eY2A=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:01.274" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:01.106" endtime="20231219 16:01:01.274"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:01:01.275" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:01.274" endtime="20231219 16:01:01.275"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:01:01.276" level="INFO">${location_header} = https://help.viasat.com/s/article/Adding-Viasat-Voice</msg>
+<status status="PASS" starttime="20231219 16:01:01.275" endtime="20231219 16:01:01.276"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:01:01.276" endtime="20231219 16:01:01.276"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:01.105" endtime="20231219 16:01:01.276"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:01.104" endtime="20231219 16:01:01.277"/>
+</test>
+<test id="s1-s1-t27" name="to help short domain and path root" line="99">
+<kw name="Get_Request_Redirect">
+<arg>short_help_path_friendly</arg>
+<arg>${SHORT_DOMAIN}</arg>
+<arg>/voice/</arg>
+<arg>https://www.viasat.com/voice/</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:01:01.279" level="INFO">Creating Session using : alias=short_help_path_friendly, url=https://viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:01:01.278" endtime="20231219 16:01:01.279"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:01:01.445" level="INFO">GET Request : url=https://viasat.com/voice/ 
+ path_url=/voice/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:01.445" level="INFO">GET Response : url=https://viasat.com/voice/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:01:01 GMT', 'X-Viasat-FWD': 'redirect-primary', 'Location': 'https://www.viasat.com/voice/', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 94be61e339880d0097634de6934f7710.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': '0Q0WSuP6QpTfyJW9vsZydgPRmZnTmVDdVCz3Ue-hmIjpV2RMVlC4aw=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:01.445" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:01.279" endtime="20231219 16:01:01.445"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:01:01.446" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:01.445" endtime="20231219 16:01:01.446"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:01:01.447" level="INFO">${location_header} = https://www.viasat.com/voice/</msg>
+<status status="PASS" starttime="20231219 16:01:01.447" endtime="20231219 16:01:01.447"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:01:01.448" endtime="20231219 16:01:01.448"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:01.277" endtime="20231219 16:01:01.448"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:01.277" endtime="20231219 16:01:01.448"/>
+</test>
+<test id="s1-s1-t28" name="to help full domain and path" line="101">
+<kw name="Get_Request_Redirect">
+<arg>blog_br_parent</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/voice</arg>
+<arg>https://help.viasat.com/s/article/Adding-Viasat-Voice</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:01:01.450" level="INFO">Creating Session using : alias=blog_br_parent, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:01:01.449" endtime="20231219 16:01:01.450"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:01:01.626" level="INFO">GET Request : url=https://www.viasat.com/voice 
+ path_url=/voice 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:01.626" level="INFO">GET Response : url=https://www.viasat.com/voice 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:01:01 GMT', 'X-Viasat-FWD': 'redirect-lookup', 'Location': 'https://help.viasat.com/s/article/Adding-Viasat-Voice', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 0c04e836dfe22246a870a0f54a2d4746.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'l2ThZ87odNrU57T5JRlqrDzCpx7l6k0LgGLvd3LIUAqT98XB3WdlIA=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:01.626" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:01.450" endtime="20231219 16:01:01.626"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:01:01.627" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:01.626" endtime="20231219 16:01:01.627"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:01:01.628" level="INFO">${location_header} = https://help.viasat.com/s/article/Adding-Viasat-Voice</msg>
+<status status="PASS" starttime="20231219 16:01:01.627" endtime="20231219 16:01:01.628"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:01:01.628" endtime="20231219 16:01:01.628"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:01.449" endtime="20231219 16:01:01.629"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:01.449" endtime="20231219 16:01:01.629"/>
+</test>
+<test id="s1-s1-t29" name="to help full domain and path root" line="103">
+<kw name="Get_Request_Redirect">
+<arg>blog_br_child</arg>
+<arg>${FULL_DOMAIN}</arg>
+<arg>/voice/</arg>
+<arg>https://help.viasat.com/s/article/Adding-Viasat-Voice</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${request_name}</arg>
+<arg>${request_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231219 16:01:01.630" level="INFO">Creating Session using : alias=blog_br_child, url=https://www.viasat.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231219 16:01:01.630" endtime="20231219 16:01:01.630"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${request_name}</arg>
+<arg>${path}</arg>
+<arg>allow_redirects=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231219 16:01:01.799" level="INFO">GET Request : url=https://www.viasat.com/voice/ 
+ path_url=/voice/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:01.799" level="INFO">GET Response : url=https://www.viasat.com/voice/ 
+ status=301, reason=Moved Permanently 
+ headers={'Content-Length': '0', 'Connection': 'keep-alive', 'Server': 'CloudFront', 'Date': 'Wed, 20 Dec 2023 00:01:01 GMT', 'X-Viasat-FWD': 'redirect-lookup', 'Location': 'https://help.viasat.com/s/article/Adding-Viasat-Voice', 'X-XSS-Protection': '1; mode=block', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000', 'Public-Key-Pins': 'max-age=1296000; pin-sha256="cvv+hcZ+EP7Do1cnMVIRLqJHXFl7tjgRqpSm34h/DTk="; pin-sha256="I92nqKO6cgS1Gx4O4s+YbHuyyF6IX3n894ph9mpYSYQ=";', 'X-Viasat-Policy': '1_10', 'Vary': 'Origin', 'X-Cache': 'LambdaGeneratedResponse from cloudfront', 'Via': '1.1 0c04e836dfe22246a870a0f54a2d4746.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SFO5-P2', 'X-Amz-Cf-Id': 'g_uoadOlm8R-ToQ7ho1afADi5XXdiL94IJf5Q-pjxpl3jQl2OnP2uQ=='} 
+ body=None 
+ </msg>
+<msg timestamp="20231219 16:01:01.799" level="INFO">${response} = &lt;Response [301]&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:01.631" endtime="20231219 16:01:01.799"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>301</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231219 16:01:01.800" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231219 16:01:01.799" endtime="20231219 16:01:01.800"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${location_header}</var>
+<arg>${response.headers}</arg>
+<arg>Location</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231219 16:01:01.801" level="INFO">${location_header} = https://help.viasat.com/s/article/Adding-Viasat-Voice</msg>
+<status status="PASS" starttime="20231219 16:01:01.800" endtime="20231219 16:01:01.801"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${location_header}</arg>
+<arg>${location}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231219 16:01:01.801" endtime="20231219 16:01:01.802"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:01.630" endtime="20231219 16:01:01.802"/>
+</kw>
+<status status="PASS" starttime="20231219 16:01:01.629" endtime="20231219 16:01:01.802"/>
+</test>
+<status status="PASS" starttime="20231219 16:00:55.456" endtime="20231219 16:01:01.803"/>
+</suite>
+<status status="PASS" starttime="20231219 16:00:55.399" endtime="20231219 16:01:01.806"/>
+</suite>
+<statistics>
+<total>
+<stat pass="29" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="29" fail="0" skip="0" id="s1" name="ViasatRedirectsAPIRegression">ViasatRedirectsAPIRegression</stat>
+<stat pass="29" fail="0" skip="0" id="s1-s1" name="RedirectURLAPI">ViasatRedirectsAPIRegression.RedirectURLAPI</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
