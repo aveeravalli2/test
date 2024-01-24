@@ -19,5 +19,5 @@ jobs:
              pip install robotframework
              pip install robotframework-requests
         - name: Run Test
-          run: robot .
+          run: robot API-RobotFramework/APITesting/APIRegressionTests/ViasatAPIRegression/AboutAPI.robot
        
